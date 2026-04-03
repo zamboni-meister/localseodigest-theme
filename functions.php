@@ -253,3 +253,45 @@ add_action( 'save_post', 'lsd_save_homepage_meta' );
    ============================================================ */
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/* ============================================================
+   GLOSSARY CUSTOM POST TYPE
+   ============================================================ */
+function lsd_register_glossary_post_type() {
+    $labels = array(
+        'name'               => _x( 'Glossary Terms', 'post type general name', 'localseodigest' ),
+        'singular_name'      => _x( 'Glossary Term', 'post type singular name', 'localseodigest' ),
+        'menu_name'          => _x( 'Glossary', 'admin menu', 'localseodigest' ),
+        'name_admin_bar'     => _x( 'Glossary Term', 'add new on admin bar', 'localseodigest' ),
+        'add_new'            => _x( 'Add New', 'glossary term', 'localseodigest' ),
+        'add_new_item'       => __( 'Add New Glossary Term', 'localseodigest' ),
+        'new_item'           => __( 'New Glossary Term', 'localseodigest' ),
+        'edit_item'          => __( 'Edit Glossary Term', 'localseodigest' ),
+        'view_item'          => __( 'View Glossary Term', 'localseodigest' ),
+        'all_items'          => __( 'All Glossary Terms', 'localseodigest' ),
+        'search_items'       => __( 'Search Glossary Terms', 'localseodigest' ),
+        'parent_item_colon'  => __( 'Parent Glossary Terms:', 'localseodigest' ),
+        'not_found'          => __( 'No glossary terms found.', 'localseodigest' ),
+        'not_found_in_trash' => __( 'No glossary terms found in Trash.', 'localseodigest' ),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'glossary-term' ),
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'menu_icon'          => 'dashicons-book-alt',
+        'supports'           => array( 'title', 'editor', 'excerpt', 'custom-fields' ),
+        'show_in_rest'       => true,
+    );
+
+    register_post_type( 'glossary_term', $args );
+}
+add_action( 'init', 'lsd_register_glossary_post_type' );
