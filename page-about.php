@@ -8,7 +8,7 @@ get_header(); ?>
     <div class="container">
         <span class="hero__eyebrow">The Story</span>
         <h1 class="about-hero__title">Hi, I'm Zane Creek</h1>
-        <p class="about-hero__subtitle">SEO Specialist, local search nerd, and the person behind LocalSEO Digest.</p>
+        <p class="about-hero__subtitle">SEO Specialist, local search nerd, and the person behind Local SEO Digest.</p>
     </div>
 </div>
 
@@ -22,7 +22,7 @@ get_header(); ?>
                 <?php else : ?>
                     <h2>Why I started this</h2>
                     <p>I'm an SEO Specialist at Timmermann Group in St. Louis with a background in business and entrepreneurship. When I started focusing on local SEO, I noticed there was a gap — most content either oversimplified things or went so deep into theory that it wasn't actionable.</p>
-                    <p>LocalSEO Digest is my answer to that. I document everything I learn, test, and discover about local search — the strategies that work, the ones that don't, and the nuances that actually move the needle for real businesses.</p>
+                    <p>Local SEO Digest is my answer to that. I document everything I learn, test, and discover about local search — the strategies that work, the ones that don't, and the nuances that actually move the needle for real businesses.</p>
                     <h2>What you'll find here</h2>
                     <p>Real strategies for Google Business Profile optimization, local citations, on-page SEO, review management, and everything else that affects how businesses show up in local search. No fluff, no generic advice — just what I've actually learned works.</p>
                     <p>I also send a weekly newsletter with the most useful insights, updates, and experiments. <a href="<?php echo esc_url( home_url( '/#newsletter' ) ); ?>">Subscribe here</a>.</p>

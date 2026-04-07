@@ -3,7 +3,7 @@
         <div class="footer-grid">
 
             <div class="footer-brand">
-                <div class="footer-brand__logo">LocalSEO <span>Digest</span></div>
+                <div class="footer-brand__logo">Local SEO <span>Digest</span></div>
                 <p class="footer-brand__desc">Documenting the journey of mastering local SEO — helping business owners and marketers grow their local visibility.</p>
             </div>
 
@@ -78,7 +78,7 @@
         </div>
 
         <div class="footer-bottom">
-            <span>&copy; <?php echo date( 'Y' ); ?> LocalSEO Digest. All rights reserved.</span>
+            <span>&copy; <?php echo date( 'Y' ); ?> Local SEO Digest. All rights reserved.</span>
             <span>Built by <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">Zane Creek</a></span>
         </div>
     </div>

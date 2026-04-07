@@ -17,7 +17,7 @@
                 <?php the_custom_logo(); ?>
             <?php else : ?>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo">
-                    LocalSEO <span>Digest</span>
+                    Local SEO <span>Digest</span>
                 </a>
             <?php endif; ?>
 

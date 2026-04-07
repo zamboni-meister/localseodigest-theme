@@ -59,7 +59,7 @@ get_header(); ?>
                  data-source="${item.source.toLowerCase()}"
                  style="display: grid; grid-template-columns: 160px 1fr 160px; align-items: center; padding: 14px 20px; background: ${bg}; border-top: 1px solid var(--border); transition: background 0.15s ease;"
                  onmouseover="this.style.background='var(--yellow-tint)'" onmouseout="this.style.background='${bg}'">
-                <span style="font-size: 0.78rem; font-weight: 700; color: var(--yellow-dark); background: var(--yellow-tint); border: 1px solid rgba(255,240,31,0.35); border-radius: 20px; padding: 3px 10px; display: inline-block; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--yellow-dark); background: var(--yellow-tint); border: 1px solid rgba(255,240,31,0.35); border-radius: 20px; padding: 3px 10px; display: inline-block; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                     ${item.source}
                 </span>
                 <a href="${item.link}" target="_blank" rel="noopener"
@@ -91,6 +91,7 @@ get_header(); ?>
         })
         .then(data => {
             allItems = Array.isArray(data) ? data : data.items || [];
+            allItems.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             if (allItems.length === 0) {
                 statusEl.textContent = 'No articles found.';

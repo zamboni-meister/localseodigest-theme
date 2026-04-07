@@ -56,7 +56,7 @@ get_header(); ?>
             $guides = array(
                 array( 'icon' => '📖', 'title' => 'Google\'s Local SEO Guide', 'desc' => 'Official documentation on how to improve your local ranking on Google.', 'link' => 'https://support.google.com/business/answer/7091', 'label' => 'Read guide' ),
                 array( 'icon' => '🏆', 'title' => 'Moz Local Search Ranking Factors', 'desc' => 'Annual survey of the most important local ranking signals according to top SEOs.', 'link' => 'https://moz.com/local-search-ranking-factors', 'label' => 'Read guide' ),
-                array( 'icon' => '📝', 'title' => 'LocalSEO Digest Blog', 'desc' => 'My own articles, experiments, and findings — updated weekly.', 'link' => home_url( '/blog/' ), 'label' => 'Read articles' ),
+                array( 'icon' => '📝', 'title' => 'Local SEO Digest Blog', 'desc' => 'My own articles, experiments, and findings — updated weekly.', 'link' => home_url( '/blog/' ), 'label' => 'Read articles' ),
             );
             foreach ( $guides as $guide ) :
             ?>

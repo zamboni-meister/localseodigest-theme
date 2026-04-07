@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalSEO Digest - Theme Functions
+ * Local SEO Digest - Theme Functions
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
