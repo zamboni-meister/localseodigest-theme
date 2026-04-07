@@ -19,7 +19,7 @@ get_header(); ?>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--mid-gray);">
                     Show
-                    <select id="per-page" style="padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.82rem; color: var(--ink); background: var(--warm-white); outline: none;">
+                    <select id="per-page-top" style="padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.82rem; color: var(--ink); background: var(--warm-white); outline: none;">
                         <option value="25" selected>25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
@@ -41,9 +41,20 @@ get_header(); ?>
             No articles match your search.
         </div>
 
-        <div id="pagination" style="display: flex; align-items: center; justify-content: space-between; margin-top: 20px; flex-wrap: wrap; gap: 12px;">
-            <div id="page-info" style="font-size: 0.82rem; color: var(--mid-gray);"></div>
-            <div id="page-buttons" style="display: flex; gap: 6px;"></div>
+        <div id="pagination-bottom" style="display: flex; align-items: center; justify-content: space-between; margin-top: 20px; flex-wrap: wrap; gap: 12px;">
+            <div id="page-info-bottom" style="font-size: 0.82rem; color: var(--mid-gray);"></div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div id="page-buttons-bottom" style="display: flex; gap: 6px;"></div>
+                <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--mid-gray);">
+                    Show
+                    <select id="per-page-bottom" style="padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.82rem; color: var(--ink); background: var(--warm-white); outline: none;">
+                        <option value="25" selected>25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    per page
+                </div>
+            </div>
         </div>
 
     </div>
@@ -51,14 +62,15 @@ get_header(); ?>
 
 <script>
 (function () {
-    const FEED_URL  = 'https://doytr55.app.n8n.cloud/webhook/feed-data';
-    const rowsEl    = document.getElementById('feed-rows');
-    const statusEl  = document.getElementById('feed-status');
-    const searchEl  = document.getElementById('feed-search');
-    const emptyEl   = document.getElementById('feed-empty');
-    const perPageEl = document.getElementById('per-page');
-    const pageInfo  = document.getElementById('page-info');
-    const pageBtns  = document.getElementById('page-buttons');
+    const FEED_URL      = 'https://doytr55.app.n8n.cloud/webhook/feed-data';
+    const rowsEl        = document.getElementById('feed-rows');
+    const statusEl      = document.getElementById('feed-status');
+    const searchEl      = document.getElementById('feed-search');
+    const emptyEl       = document.getElementById('feed-empty');
+    const perPageTop    = document.getElementById('per-page-top');
+    const perPageBot    = document.getElementById('per-page-bottom');
+    const pageInfoBot   = document.getElementById('page-info-bottom');
+    const pageBtnsBot   = document.getElementById('page-buttons-bottom');
 
     let allItems      = [];
     let filteredItems = [];
@@ -104,12 +116,55 @@ get_header(); ?>
             </div>`;
     }
 
+    function buildPageButtons(container, totalPages) {
+        container.innerHTML = '';
+
+        const btnStyle = (active) =>
+            `padding: 5px 10px; font-size: 0.78rem; border: 1px solid var(--border); border-radius: var(--radius); background: ${active ? 'var(--ink)' : 'var(--warm-white)'}; color: ${active ? '#fff' : 'var(--ink)'}; cursor: pointer;`;
+
+        const prev = document.createElement('button');
+        prev.textContent = '←';
+        prev.style.cssText = btnStyle(false);
+        prev.disabled = currentPage === 1;
+        prev.onclick = () => { currentPage--; renderPage(); window.scrollTo(0, 0); };
+        container.appendChild(prev);
+
+        for (let p = 1; p <= totalPages; p++) {
+            if (totalPages > 7 && p > 2 && p < totalPages - 1 && Math.abs(p - currentPage) > 1) {
+                if (p === 3 || p === totalPages - 2) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '…';
+                    ellipsis.style.cssText = 'padding: 5px 6px; font-size: 0.78rem; color: var(--mid-gray);';
+                    container.appendChild(ellipsis);
+                }
+                continue;
+            }
+            const btn = document.createElement('button');
+            btn.textContent = p;
+            btn.style.cssText = btnStyle(p === currentPage);
+            btn.onclick = ((page) => () => { currentPage = page; renderPage(); window.scrollTo(0, 0); })(p);
+            container.appendChild(btn);
+        }
+
+        const next = document.createElement('button');
+        next.textContent = '→';
+        next.style.cssText = btnStyle(false);
+        next.disabled = currentPage === totalPages;
+        next.onclick = () => { currentPage++; renderPage(); window.scrollTo(0, 0); };
+        container.appendChild(next);
+    }
+
+    function syncPerPageSelectors() {
+        perPageTop.value = perPage;
+        perPageBot.value = perPage;
+    }
+
     function renderPage() {
         if (filteredItems.length === 0) {
             rowsEl.innerHTML = '';
             emptyEl.style.display = 'block';
-            pageInfo.textContent = '';
-            pageBtns.innerHTML = '';
+            pageInfoBot.textContent = '';
+            pageBtnsBot.innerHTML = '';
             return;
         }
 
@@ -118,53 +173,16 @@ get_header(); ?>
         const totalPages = Math.ceil(filteredItems.length / perPage);
         if (currentPage > totalPages) currentPage = 1;
 
-        const start = (currentPage - 1) * perPage;
-        const end   = Math.min(start + perPage, filteredItems.length);
+        const start     = (currentPage - 1) * perPage;
+        const end       = Math.min(start + perPage, filteredItems.length);
         const pageItems = filteredItems.slice(start, end);
 
         rowsEl.innerHTML = pageItems.map((item, i) => buildRow(item, i)).join('');
 
-        pageInfo.textContent = `Showing ${start + 1}–${end} of ${filteredItems.length} articles`;
+        pageInfoBot.textContent = `Showing ${start + 1}–${end} of ${filteredItems.length} articles`;
 
-        // Build page buttons
-        pageBtns.innerHTML = '';
-
-        const btnStyle = (active) =>
-            `padding: 5px 10px; font-size: 0.78rem; border: 1px solid var(--border); border-radius: var(--radius); background: ${active ? 'var(--ink)' : 'var(--warm-white)'}; color: ${active ? '#fff' : 'var(--ink)'}; cursor: pointer;`;
-
-        // Prev
-        const prev = document.createElement('button');
-        prev.textContent = '←';
-        prev.style.cssText = btnStyle(false);
-        prev.disabled = currentPage === 1;
-        prev.onclick = () => { currentPage--; renderPage(); window.scrollTo(0,0); };
-        pageBtns.appendChild(prev);
-
-        // Page numbers
-        for (let p = 1; p <= totalPages; p++) {
-            if (totalPages > 7 && p > 2 && p < totalPages - 1 && Math.abs(p - currentPage) > 1) {
-                if (p === 3 || p === totalPages - 2) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.textContent = '…';
-                    ellipsis.style.cssText = 'padding: 5px 6px; font-size: 0.78rem; color: var(--mid-gray);';
-                    pageBtns.appendChild(ellipsis);
-                }
-                continue;
-            }
-            const btn = document.createElement('button');
-            btn.textContent = p;
-            btn.style.cssText = btnStyle(p === currentPage);
-            btn.onclick = ((page) => () => { currentPage = page; renderPage(); window.scrollTo(0,0); })(p);
-            pageBtns.appendChild(btn);
-        }
-
-        // Next
-        const next = document.createElement('button');
-        next.textContent = '→';
-        next.style.cssText = btnStyle(false);
-        next.disabled = currentPage === totalPages;
-        next.onclick = () => { currentPage++; renderPage(); window.scrollTo(0,0); };
-        pageBtns.appendChild(next);
+        buildPageButtons(pageBtnsBot, totalPages);
+        syncPerPageSelectors();
     }
 
     function applyFilter() {
@@ -206,7 +224,13 @@ get_header(); ?>
 
     searchEl.addEventListener('input', applyFilter);
 
-    perPageEl.addEventListener('change', function () {
+    perPageTop.addEventListener('change', function () {
+        perPage = parseInt(this.value);
+        currentPage = 1;
+        renderPage();
+    });
+
+    perPageBot.addEventListener('change', function () {
         perPage = parseInt(this.value);
         currentPage = 1;
         renderPage();
