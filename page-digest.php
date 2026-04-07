@@ -46,8 +46,8 @@ get_header(); ?>
 
     const SOURCE_STYLES = {
         'google search central': 'background:#4285F4; color:#fff; border-color:#FFF5D7;',
-        'semrush':               'background:#C190FF; color:#181E15; border-color:#FFF5D7;',
-        'nathan gotch':          'background:#2952CC; color:#fff; border-color:#FF0034;',
+        'semrush':               'background:#E0C7FF; color:#181E15; border-color:#FFF5D7;',
+        'nathan gotch':          'background:#2952CC; color:#fff; border-color:#FFF5D7;',
     };
 
     function getBadgeStyle(source) {
