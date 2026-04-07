@@ -81,6 +81,7 @@ get_header(); ?>
         'google search central': 'background:#4285F4; color:#fff; border-color:#FFF5D7;',
         'semrush':               'background:#E0C7FF; color:#181E15; border-color:#FFF5D7;',
         'nathan gotch':          'background:#2952CC; color:#fff; border-color:#FFF5D7;',
+        'search engine journal': 'background:#5DC82A; color:#fff; border-color:#FFF5D7;',
     };
 
     function getBadgeStyle(source) {
