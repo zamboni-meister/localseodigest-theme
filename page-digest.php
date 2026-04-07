@@ -2,6 +2,33 @@
 /*
  * Template Name: Digest Page
  */
+
+// Fetch and cache feed data
+$items = get_transient('digest_feed');
+
+if ($items === false) {
+    $response = wp_remote_get('https://doytr55.app.n8n.cloud/webhook/feed-data', [
+        'timeout' => 15,
+    ]);
+
+    if (!is_wp_error($response)) {
+        $body  = wp_remote_retrieve_body($response);
+        $items = json_decode($body, true);
+
+        if (is_array($items)) {
+            // Sort by date descending before caching
+            usort($items, function($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
+            set_transient('digest_feed', $items, HOUR_IN_SECONDS);
+        }
+    }
+}
+
+if (!is_array($items)) {
+    $items = [];
+}
+
 get_header(); ?>
 
 <div class="resources-header">
@@ -15,7 +42,9 @@ get_header(); ?>
     <div style="padding: 56px 0;">
 
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-            <div id="feed-status" style="font-size: 0.82rem; color: var(--mid-gray);">Loading&hellip;</div>
+            <div id="feed-status" style="font-size: 0.82rem; color: var(--mid-gray);">
+                <?php echo count($items); ?> article<?php echo count($items) !== 1 ? 's' : ''; ?> loaded
+            </div>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--mid-gray);">
                     Show
@@ -35,7 +64,42 @@ get_header(); ?>
             </div>
         </div>
 
-        <div id="feed-rows"></div>
+        <div id="feed-rows">
+            <?php foreach ($items as $index => $item) :
+                $source    = esc_html($item['source'] ?? '');
+                $title     = esc_html($item['title'] ?? '');
+                $link      = esc_url($item['link'] ?? '#');
+                $date      = esc_html($item['date'] ?? '');
+                $bg        = $index % 2 === 0 ? 'var(--warm-white)' : '#fff';
+
+                $formatted_date = '';
+                if ($date) {
+                    $timestamp = strtotime($date);
+                    if ($timestamp) {
+                        $formatted_date = date('M j, Y g:i A', $timestamp);
+                    }
+                }
+            ?>
+            <div class="feed-row"
+                 data-title="<?php echo strtolower($title); ?>"
+                 data-source="<?php echo strtolower($source); ?>"
+                 style="display: grid; grid-template-columns: auto 1fr 200px; align-items: center; padding: 14px 20px; background: <?php echo $bg; ?>; border-top: 1px solid var(--border); transition: background 0.15s ease;"
+                 onmouseover="this.style.background='var(--yellow-tint)'" onmouseout="this.style.background='<?php echo $bg; ?>'">
+                <span class="source-badge" data-source="<?php echo strtolower($source); ?>"
+                      style="font-size: 0.78rem; font-weight: 700; border-radius: 20px; padding: 3px 10px; display: inline-block; white-space: nowrap;">
+                    <?php echo $source; ?>
+                </span>
+                <a href="<?php echo $link; ?>" target="_blank" rel="noopener"
+                   style="font-size: 0.88rem; color: var(--ink); text-decoration: none; font-weight: 500; line-height: 1.4; padding: 0 16px;"
+                   onmouseover="this.style.color='var(--yellow-dark)'" onmouseout="this.style.color='var(--ink)'">
+                    <?php echo $title; ?>
+                </a>
+                <span style="font-size: 0.78rem; color: var(--mid-gray); text-align: right; white-space: nowrap;">
+                    <?php echo $formatted_date ?: $date; ?>
+                </span>
+            </div>
+            <?php endforeach; ?>
+        </div>
 
         <div id="feed-empty" style="display: none; padding: 48px; text-align: center; color: var(--mid-gray); font-size: 0.9rem;">
             No articles match your search.
@@ -60,63 +124,53 @@ get_header(); ?>
     </div>
 </div>
 
+<style>
+.source-badge[data-source="google search central"] { background: #4285F4; color: #fff; border: 1px solid #000; }
+.source-badge[data-source="semrush"]               { background: #E0C7FF; color: #181E15; border: 1px solid #000; }
+.source-badge[data-source="nathan gotch"]           { background: #2952CC; color: #fff; border: 1px solid #000; }
+.source-badge[data-source="search engine journal"]  { background: #5DC82A; color: #fff; border: 1px solid #000; }
+.source-badge                                       { background: var(--yellow-tint); color: var(--yellow-dark); border: 1px solid #000; }
+</style>
+
 <script>
 (function () {
-    const FEED_URL      = 'https://doytr55.app.n8n.cloud/webhook/feed-data';
-    const rowsEl        = document.getElementById('feed-rows');
-    const statusEl      = document.getElementById('feed-status');
-    const searchEl      = document.getElementById('feed-search');
-    const emptyEl       = document.getElementById('feed-empty');
-    const perPageTop    = document.getElementById('per-page-top');
-    const perPageBot    = document.getElementById('per-page-bottom');
-    const pageInfoBot   = document.getElementById('page-info-bottom');
-    const pageBtnsBot   = document.getElementById('page-buttons-bottom');
+    const allRows     = Array.from(document.querySelectorAll('.feed-row'));
+    const rowsEl      = document.getElementById('feed-rows');
+    const statusEl    = document.getElementById('feed-status');
+    const searchEl    = document.getElementById('feed-search');
+    const emptyEl     = document.getElementById('feed-empty');
+    const perPageTop  = document.getElementById('per-page-top');
+    const perPageBot  = document.getElementById('per-page-bottom');
+    const pageInfoBot = document.getElementById('page-info-bottom');
+    const pageBtnsBot = document.getElementById('page-buttons-bottom');
 
-    let allItems      = [];
-    let filteredItems = [];
-    let currentPage   = 1;
-    let perPage       = 25;
+    let filteredRows = allRows.slice();
+    let currentPage  = 1;
+    let perPage      = 25;
 
-    const SOURCE_STYLES = {
-            'google search central': 'background:#4285F4; color:#fff; border: 1px solid #000;',
-            'semrush':               'background:#E0C7FF; color:#181E15; border: 1px solid #000;',
-            'nathan gotch':          'background:#2952CC; color:#fff; border: 1px solid #000;',
-            'search engine journal': 'background:#5DC82A; color:#fff; border: 1px solid #000;',
-    };
+    function renderPage() {
+        allRows.forEach(r => r.style.display = 'none');
 
-    function getBadgeStyle(source) {
-        const key = source.toLowerCase();
-        return SOURCE_STYLES[key] || 'background:var(--yellow-tint); color:var(--yellow-dark); border-color:rgba(255,240,31,0.35);';
-    }
+        if (filteredRows.length === 0) {
+            emptyEl.style.display = 'block';
+            pageInfoBot.textContent = '';
+            pageBtnsBot.innerHTML = '';
+            return;
+        }
 
-    function formatDate(dateStr) {
-        const d = new Date(dateStr);
-        if (isNaN(d)) return dateStr;
-        const date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-        return `${date} ${time}`;
-    }
+        emptyEl.style.display = 'none';
 
-    function buildRow(item, index) {
-        const isEven = index % 2 === 0;
-        const bg = isEven ? 'var(--warm-white)' : '#fff';
-        const badgeStyle = getBadgeStyle(item.source);
-        return `
-            <div class="feed-row"
-                 style="display: grid; grid-template-columns: auto 1fr 160px; align-items: center; padding: 14px 20px; background: ${bg}; border-top: 1px solid var(--border); transition: background 0.15s ease;"
-                 onmouseover="this.style.background='var(--yellow-tint)'" onmouseout="this.style.background='${bg}'">
-                <span style="font-size: 0.78rem; font-weight: 700; ${badgeStyle} border: 1px solid; border-radius: 20px; padding: 3px 10px; display: inline-block; white-space: nowrap;">
-                    ${item.source}
-                </span>
-                <a href="${item.link}" target="_blank" rel="noopener"
-                   style="font-size: 0.88rem; color: var(--ink); text-decoration: none; font-weight: 500; line-height: 1.4; padding: 0 16px;"
-                   onmouseover="this.style.color='var(--yellow-dark)'" onmouseout="this.style.color='var(--ink)'">
-                    ${item.title}
-                </a>
-                <span style="font-size: 0.78rem; color: var(--mid-gray); text-align: right; white-space: nowrap;">
-                    ${formatDate(item.date)}
-                </span>
-            </div>`;
+        const totalPages = Math.ceil(filteredRows.length / perPage);
+        if (currentPage > totalPages) currentPage = 1;
+
+        const start = (currentPage - 1) * perPage;
+        const end   = Math.min(start + perPage, filteredRows.length);
+
+        filteredRows.slice(start, end).forEach(r => r.style.display = 'grid');
+
+        pageInfoBot.textContent = `Showing ${start + 1}–${end} of ${filteredRows.length} articles`;
+        buildPageButtons(pageBtnsBot, totalPages);
+        syncPerPageSelectors();
     }
 
     function buildPageButtons(container, totalPages) {
@@ -162,82 +216,24 @@ get_header(); ?>
         perPageBot.value = perPage;
     }
 
-    function renderPage() {
-        if (filteredItems.length === 0) {
-            rowsEl.innerHTML = '';
-            emptyEl.style.display = 'block';
-            pageInfoBot.textContent = '';
-            pageBtnsBot.innerHTML = '';
-            return;
-        }
-
-        emptyEl.style.display = 'none';
-
-        const totalPages = Math.ceil(filteredItems.length / perPage);
-        if (currentPage > totalPages) currentPage = 1;
-
-        const start     = (currentPage - 1) * perPage;
-        const end       = Math.min(start + perPage, filteredItems.length);
-        const pageItems = filteredItems.slice(start, end);
-
-        rowsEl.innerHTML = pageItems.map((item, i) => buildRow(item, i)).join('');
-
-        pageInfoBot.textContent = `Showing ${start + 1}–${end} of ${filteredItems.length} articles`;
-
-        buildPageButtons(pageBtnsBot, totalPages);
-        syncPerPageSelectors();
-    }
-
     function applyFilter() {
         const q = searchEl.value.trim().toLowerCase();
-        filteredItems = q
-            ? allItems.filter(item => item.title.toLowerCase().includes(q) || item.source.toLowerCase().includes(q))
-            : allItems.slice();
+        filteredRows = q
+            ? allRows.filter(r =>
+                r.dataset.title.includes(q) || r.dataset.source.includes(q))
+            : allRows.slice();
         currentPage = 1;
         statusEl.textContent = q
-            ? `${filteredItems.length} result${filteredItems.length !== 1 ? 's' : ''} for "${searchEl.value.trim()}"`
-            : `${allItems.length} article${allItems.length !== 1 ? 's' : ''} loaded`;
+            ? `${filteredRows.length} result${filteredRows.length !== 1 ? 's' : ''} for "${searchEl.value.trim()}"`
+            : `${allRows.length} article${allRows.length !== 1 ? 's' : ''} loaded`;
         renderPage();
     }
 
-    fetch(FEED_URL)
-        .then(res => {
-            if (!res.ok) throw new Error('Feed fetch failed: ' + res.status);
-            return res.json();
-        })
-        .then(data => {
-            allItems = Array.isArray(data) ? data : data.items || [];
-            allItems.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (allItems.length === 0) {
-                statusEl.textContent = 'No articles found.';
-                renderPage();
-                return;
-            }
-
-            statusEl.textContent = `${allItems.length} article${allItems.length !== 1 ? 's' : ''} loaded`;
-            filteredItems = allItems.slice();
-            renderPage();
-        })
-        .catch(err => {
-            statusEl.textContent = 'Could not load feed.';
-            rowsEl.innerHTML = `<div style="padding: 32px; text-align: center; color: var(--mid-gray); font-size: 0.875rem;">Unable to fetch feed. Try again later.</div>`;
-            console.error(err);
-        });
-
     searchEl.addEventListener('input', applyFilter);
+    perPageTop.addEventListener('change', function () { perPage = parseInt(this.value); currentPage = 1; renderPage(); });
+    perPageBot.addEventListener('change', function () { perPage = parseInt(this.value); currentPage = 1; renderPage(); });
 
-    perPageTop.addEventListener('change', function () {
-        perPage = parseInt(this.value);
-        currentPage = 1;
-        renderPage();
-    });
-
-    perPageBot.addEventListener('change', function () {
-        perPage = parseInt(this.value);
-        currentPage = 1;
-        renderPage();
-    });
+    renderPage();
 }());
 </script>
 
