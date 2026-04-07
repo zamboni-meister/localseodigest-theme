@@ -36,6 +36,8 @@ if (!is_array($items)) {
     $items = [];
 }
 
+delete_transient('digest_feed');
+
 get_header(); ?>
 
 <div class="resources-header">
