@@ -91,7 +91,9 @@ get_header(); ?>
     function formatDate(dateStr) {
         const d = new Date(dateStr);
         if (isNaN(d)) return dateStr;
-        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        return `${date} ${time}`;
     }
 
     function buildRow(item, index) {
