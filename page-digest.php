@@ -3,6 +3,8 @@
  * Template Name: Digest Page
  */
 
+delete_transient('digest_feed');
+
 // Fetch and cache feed data
 $items = get_transient('digest_feed');
 
@@ -11,21 +13,24 @@ if ($items === false) {
         'timeout' => 15,
     ]);
 
-    // TEMP DEBUG - remove after fixing
-    $body = wp_remote_retrieve_body($response);
-    error_log('n8n raw response: ' . $body);
-    $items = json_decode($body, true);
-    error_log('parsed items count: ' . count($items));
-    error_log('first item: ' . print_r($items[0] ?? 'empty', true));
-
     if (!is_wp_error($response)) {
-        $body  = wp_remote_retrieve_body($response);
-        $items = json_decode($body, true);
+        $body   = wp_remote_retrieve_body($response);
+        $parsed = json_decode($body, true);
 
-        if (is_array($items)) {
-            // Sort by date descending before caching
+        // Handle both flat array and wrapped {"items": [...]}
+        if (isset($parsed['items']) && is_array($parsed['items'])) {
+            $items = $parsed['items'];
+        } elseif (isset($parsed[0]) && is_array($parsed[0])) {
+            $items = $parsed;
+        } elseif (is_array($parsed)) {
+            $items = array_values($parsed);
+        } else {
+            $items = [];
+        }
+
+        if (!empty($items)) {
             usort($items, function($a, $b) {
-                return strtotime($b['date']) - strtotime($a['date']);
+                return strtotime($b['date'] ?? '') - strtotime($a['date'] ?? '');
             });
             set_transient('digest_feed', $items, HOUR_IN_SECONDS);
         }
@@ -35,8 +40,6 @@ if ($items === false) {
 if (!is_array($items)) {
     $items = [];
 }
-
-delete_transient('digest_feed');
 
 get_header(); ?>
 
