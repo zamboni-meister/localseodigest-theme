@@ -63,7 +63,7 @@
                                 'About'       => home_url( '/about/' ),
                                 'Contact'     => home_url( '/contact/' ),
                                 'Newsletter'  => home_url( '/newsletter/' ),
-                                'Feed'        => home_url( '/feed/' ),
+                                'Digest'      => home_url( '/digest/' ),
                                 'Privacy'     => home_url( '/privacy-policy/' ),
                             );
                             foreach ( $links as $label => $url ) {

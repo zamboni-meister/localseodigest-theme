@@ -11,7 +11,7 @@ deployment:
     - /bin/cp -r index.php $DEPLOYPATH
     - /bin/cp -r page-about.php $DEPLOYPATH
     - /bin/cp -r page-contact.php $DEPLOYPATH
-    - /bin/cp -r page-feed.php $DEPLOYPATH
+    - /bin/cp -r page-digest.php $DEPLOYPATH
     - /bin/cp -r page-glossary.php $DEPLOYPATH
     - /bin/cp -r page-resources.php $DEPLOYPATH
     - /bin/cp -r page.php $DEPLOYPATH

@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Feed Page
+ * Template Name: Digest Page
  */
 get_header(); ?>
 
