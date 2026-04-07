@@ -44,6 +44,17 @@ get_header(); ?>
 
     let allItems = [];
 
+    const SOURCE_STYLES = {
+        'google search central': 'background:#4285F4; color:#fff; border-color:#FFF5D7;',
+        'semrush':               'background:#C190FF; color:#181E15; border-color:#FFF5D7;',
+        'nathan gotch':          'background:#2952CC; color:#fff; border-color:#FF0034;',
+    };
+
+    function getBadgeStyle(source) {
+        const key = source.toLowerCase();
+        return SOURCE_STYLES[key] || 'background:var(--yellow-tint); color:var(--yellow-dark); border-color:rgba(255,240,31,0.35);';
+    }
+
     function formatDate(dateStr) {
         const d = new Date(dateStr);
         if (isNaN(d)) return dateStr;
@@ -53,13 +64,14 @@ get_header(); ?>
     function buildRow(item, index) {
         const isEven = index % 2 === 0;
         const bg = isEven ? 'var(--warm-white)' : '#fff';
+        const badgeStyle = getBadgeStyle(item.source);
         return `
             <div class="feed-row"
                  data-title="${item.title.toLowerCase()}"
                  data-source="${item.source.toLowerCase()}"
-                 style="display: grid; grid-template-columns: 160px 1fr 160px; align-items: center; padding: 14px 20px; background: ${bg}; border-top: 1px solid var(--border); transition: background 0.15s ease;"
+                 style="display: grid; grid-template-columns: auto 1fr 160px; align-items: center; padding: 14px 20px; background: ${bg}; border-top: 1px solid var(--border); transition: background 0.15s ease;"
                  onmouseover="this.style.background='var(--yellow-tint)'" onmouseout="this.style.background='${bg}'">
-                <span style="font-size: 0.78rem; font-weight: 700; color: var(--yellow-dark); background: var(--yellow-tint); border: 1px solid rgba(255,240,31,0.35); border-radius: 20px; padding: 3px 10px; display: inline-block; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <span style="font-size: 0.78rem; font-weight: 700; ${badgeStyle} border: 1px solid; border-radius: 20px; padding: 3px 10px; display: inline-block; white-space: nowrap;">
                     ${item.source}
                 </span>
                 <a href="${item.link}" target="_blank" rel="noopener"
