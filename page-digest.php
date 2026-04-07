@@ -78,10 +78,10 @@ get_header(); ?>
     let perPage       = 25;
 
     const SOURCE_STYLES = {
-        'google search central': 'background:#4285F4; color:#fff; border-color:#FFF5D7;',
-        'semrush':               'background:#E0C7FF; color:#181E15; border-color:#FFF5D7;',
-        'nathan gotch':          'background:#2952CC; color:#fff; border-color:#FFF5D7;',
-        'search engine journal': 'background:#5DC82A; color:#fff; border-color:#FFF5D7;',
+            'google search central': 'background:#4285F4; color:#fff; border: 1px solid #000;',
+            'semrush':               'background:#E0C7FF; color:#181E15; border: 1px solid #000;',
+            'nathan gotch':          'background:#2952CC; color:#fff; border: 1px solid #000;',
+            'search engine journal': 'background:#5DC82A; color:#fff; border: 1px solid #000;',
     };
 
     function getBadgeStyle(source) {
