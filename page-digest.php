@@ -11,6 +11,13 @@ if ($items === false) {
         'timeout' => 15,
     ]);
 
+    // TEMP DEBUG - remove after fixing
+    $body = wp_remote_retrieve_body($response);
+    error_log('n8n raw response: ' . $body);
+    $items = json_decode($body, true);
+    error_log('parsed items count: ' . count($items));
+    error_log('first item: ' . print_r($items[0] ?? 'empty', true));
+
     if (!is_wp_error($response)) {
         $body  = wp_remote_retrieve_body($response);
         $items = json_decode($body, true);
