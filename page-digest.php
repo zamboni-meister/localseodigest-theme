@@ -3,7 +3,6 @@
  * Template Name: Digest Page
  */
 
-delete_transient('digest_feed');
 
 // Fetch and cache feed data
 $items = get_transient('digest_feed');
