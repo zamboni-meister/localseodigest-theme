@@ -51,6 +51,7 @@ function lsd_default_nav() {
         'About'     => home_url( '/about/' ),
         'Resources' => home_url( '/resources/' ),
         'Contact'   => home_url( '/contact/' ),
+        'Feed'      => home_url( '/feed/' ),
     );
     foreach ( $pages as $label => $url ) {
         echo '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
