@@ -36,7 +36,7 @@
                 <ul>
                     <?php
                     wp_nav_menu( array(
-                        'theme_location' => 'footer-3',
+                        'theme_location' => 'footer-2',
                         'container'      => false,
                         'items_wrap'     => '%3$s',
                         'fallback_cb'    => function() {

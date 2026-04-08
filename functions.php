@@ -24,7 +24,7 @@ function lsd_theme_setup() {
     register_nav_menus( array(
         'primary'  => __( 'Primary Navigation', 'localseodigest' ),
         'footer-1' => __( 'Footer Column 1', 'localseodigest' ),
-        'footer-3' => __( 'Footer Column 3', 'localseodigest' ),
+        'footer-2' => __( 'Footer Column 2', 'localseodigest' ),
     ) );
 }
 add_action( 'after_setup_theme', 'lsd_theme_setup' );
