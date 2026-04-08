@@ -32,25 +32,6 @@
             </div>
 
             <div class="footer-col">
-                <div class="footer-col__heading">Topics</div>
-                <ul>
-                    <?php
-                    $categories = get_categories( array( 'number' => 5, 'orderby' => 'count', 'order' => 'DESC' ) );
-                    if ( $categories ) {
-                        foreach ( $categories as $cat ) {
-                            echo '<li><a href="' . esc_url( get_category_link( $cat->term_id ) ) . '">' . esc_html( $cat->name ) . '</a></li>';
-                        }
-                    } else {
-                        $topics = array( 'Google Business Profile', 'Local Citations', 'On-Page SEO', 'Link Building', 'Reviews & Reputation' );
-                        foreach ( $topics as $topic ) {
-                            echo '<li><a href="#">' . esc_html( $topic ) . '</a></li>';
-                        }
-                    }
-                    ?>
-                </ul>
-            </div>
-
-            <div class="footer-col">
                 <div class="footer-col__heading">Site</div>
                 <ul>
                     <?php
