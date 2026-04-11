@@ -92,23 +92,35 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
      NEWSLETTER STRIP
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section class="lsd-nl-strip">
-	<div class="lsd-nl-strip__inner">
-		<div class="lsd-nl-strip__text">
-			<h2 class="lsd-nl-strip__headline"><?php echo wp_kses( $nl_headline, array( 'span' => array() ) ); ?></h2>
-			<p class="lsd-nl-strip__sub"><?php echo esc_html( $nl_sub ); ?></p>
-		</div>
-		<form class="lsd-nl-strip__form" action="<?php echo esc_url( home_url( '/newsletter/' ) ); ?>" method="get">
-			<input
-				type="email"
-				name="email"
-				class="lsd-nl-strip__input"
-				placeholder="your@email.com"
-				required
-				aria-label="Email address"
-			/>
-			<button type="submit" class="lsd-btn lsd-btn--yellow">Subscribe</button>
-		</form>
-	</div>
+    <div class="lsd-nl-strip__inner">
+        <div class="lsd-nl-strip__text">
+            <h2 class="lsd-nl-strip__headline"><?php echo wp_kses( $nl_headline, array( 'span' => array() ) ); ?></h2>
+            <p class="lsd-nl-strip__sub"><?php echo esc_html( $nl_sub ); ?></p>
+        </div>
+
+        <div id="sib-container" class="lsd-nl-strip__form">
+            <div id="error-message" class="sib-form-message-panel" style="display:none;">
+                <span>Your subscription could not be saved. Please try again.</span>
+            </div>
+            <div id="success-message" class="sib-form-message-panel" style="display:none;">
+                <span>You're subscribed!</span>
+            </div>
+            <form id="sib-form" method="POST"
+                action="https://1c0cb842.sibforms.com/serve/MUIFACfB43trusSs2v3WjJyc3X8hMfxr031W92rOqPBY-RgYtAkikvYykYSkl2vxmAMxGF_uyJGnvJTbl3e3zThuAopZeArAR8Mv-agnDrZhKKfe7ZMKGO_OXG0V16MfdJaa6TR4tMtg9ClJrqtITc9dI87d55Doe2BEi1OBTDcmw0MezVbF0BTvojWOvu79yhSWyVrtYgy5eghj"
+                data-type="subscription">
+                <input type="email" id="EMAIL" name="EMAIL"
+                    class="lsd-nl-strip__input"
+                    placeholder="your@email.com"
+                    required aria-label="Email address" />
+                <button type="submit" class="lsd-btn lsd-btn--yellow" form="sib-form">
+                    Subscribe
+                </button>
+                <input type="text" name="email_address_check" value="" class="input--hidden">
+                <input type="hidden" name="locale" value="en">
+            </form>
+        </div>
+
+    </div>
 </section>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
