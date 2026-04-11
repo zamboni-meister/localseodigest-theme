@@ -26,7 +26,6 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
 <section class="lsd-hero">
 	<div class="lsd-hero__bg-text" aria-hidden="true">LOCAL</div>
 	<div class="lsd-hero__inner">
-		<p class="lsd-hero__eyebrow"><?php echo esc_html( $hero_eyebrow ); ?></p>
 		<h1 class="lsd-hero__headline">
 			<?php echo esc_html( $hero_headline1 ); ?><br>
 			<?php echo esc_html( $hero_headline2 ); ?>
