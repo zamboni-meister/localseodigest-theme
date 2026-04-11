@@ -53,18 +53,18 @@ get_header(); ?>
                 <div class="about-card">
                     <span class="about-card__icon">&#9679;</span>
                     <div>
-                        <h3 class="about-card__heading">The Glossary</h3>
-                        <p class="about-card__body">Plain-language definitions for the terminology that comes up constantly in local SEO. A good place to get grounded before going deeper.</p>
-                        <a href="<?php echo esc_url( home_url( '/glossary/' ) ); ?>" class="about-card__link">Browse the glossary &rarr;</a>
+                        <h3 class="about-card__heading">Resources</h3>
+                        <p class="about-card__body">A handpicked collection of tools and recommended reading for local SEO professionals. The stuff worth bookmarking.</p>
+                        <a href="<?php echo esc_url( home_url( '/resources/' ) ); ?>" class="about-card__link">See resources &rarr;</a>
                     </div>
                 </div>
 
                 <div class="about-card">
                     <span class="about-card__icon">&#9679;</span>
                     <div>
-                        <h3 class="about-card__heading">Resources</h3>
-                        <p class="about-card__body">A handpicked collection of tools and recommended reading for local SEO professionals. The stuff worth bookmarking.</p>
-                        <a href="<?php echo esc_url( home_url( '/resources/' ) ); ?>" class="about-card__link">See resources &rarr;</a>
+                        <h3 class="about-card__heading">The Glossary</h3>
+                        <p class="about-card__body">Plain-language definitions for the terminology that comes up constantly in local SEO. A good place to get grounded before going deeper.</p>
+                        <a href="<?php echo esc_url( home_url( '/glossary/' ) ); ?>" class="about-card__link">Browse the glossary &rarr;</a>
                     </div>
                 </div>
 
