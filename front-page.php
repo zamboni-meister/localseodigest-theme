@@ -8,7 +8,6 @@ get_header();
 
 // Homepage meta box fields
 $post_id        = get_option( 'page_on_front' );
-$hero_eyebrow   = get_post_meta( $post_id, '_lsd_hero_eyebrow',   true ) ?: 'Local SEO Digest';
 $hero_headline1 = get_post_meta( $post_id, '_lsd_hero_headline1', true ) ?: 'Master';
 $hero_headline2 = get_post_meta( $post_id, '_lsd_hero_headline2', true ) ?: 'local search.';
 $hero_sub       = get_post_meta( $post_id, '_lsd_hero_sub',       true ) ?: 'The resource for SEO professionals and business owners who want to dominate Google\'s local results — GBP strategies, ranking signals, and weekly updates.';
