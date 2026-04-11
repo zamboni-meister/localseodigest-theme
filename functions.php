@@ -62,26 +62,6 @@ function lsd_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'lsd_enqueue_assets' );
 
 
-function lsd_brevo_scripts() {
-    if ( ! is_front_page() ) return;
-
-    wp_enqueue_style(
-        'brevo-forms',
-        'https://sibforms.com/forms/end-form/build/sib-styles.css',
-        array(),
-        null
-    );
-    wp_enqueue_script(
-        'brevo-forms',
-        'https://sibforms.com/forms/end-form/build/main.js',
-        array(),
-        null,
-        true
-    );
-}
-
-add_action( 'wp_enqueue_scripts', 'lsd_brevo_scripts' );
-
 /* ============================================================
    WIDGET AREAS
    ============================================================ */
