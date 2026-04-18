@@ -578,7 +578,7 @@ strong { font-weight: 600; color: var(--ink); }
 .post-featured-image img { width: 100%; object-fit: cover; }
 
 .post-content {
-  padding: 20px 0 64px;
+  padding: 40px 0 64px;
 }
 
 .entry-content { max-width: var(--content-width); }
