@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce']))
     if (!wp_verify_nonce($_POST['lsd_contact_nonce'], 'lsd_contact')) {
         $lsd_error = 'Security check failed. Please try again.';
     } else {
-        $name    = sanitize_text_field($_POST['contact_name'] ?? '');
-        $email   = sanitize_email($_POST['contact_email'] ?? '');
+        $name = sanitize_text_field($_POST['contact_name'] ?? '');
+        $email = sanitize_email($_POST['contact_email'] ?? '');
         $message = sanitize_textarea_field($_POST['contact_message'] ?? '');
 
         if (empty($name) || empty($email) || empty($message)) {
@@ -19,13 +19,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce']))
         } elseif (!is_email($email)) {
             $lsd_error = 'Please enter a valid email address.';
         } else {
-            $to      = 'info@localseodigest.com';
+            $to = 'info@localseodigest.com';
             $subject = 'New contact message from ' . $name;
-            $body    = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+            $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
             $headers = ['Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $email];
 
             if (wp_mail($to, $subject, $body, $headers)) {
                 $lsd_success = true;
+
+                // Push contact to Brevo
+                require_once get_template_directory() . '/lsd-secrets.php';
+                $brevo_api_key = LSD_BREVO_API_KEY;
+                $brevo_payload = json_encode([
+                    'email' => $email,
+                    'attributes' => [
+                        'FIRSTNAME' => $name,
+                        'MESSAGE' => $message,
+                        'DATE' => date('Y-m-d H:i:s'),
+                    ],
+                    'listIds' => [4],
+                    'updateEnabled' => true,
+                ]);
+
+                wp_remote_post('https://api.brevo.com/v3/contacts', [
+                    'headers' => [
+                        'api-key' => $brevo_api_key,
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                    ],
+                    'body' => $brevo_payload,
+                    'timeout' => 10,
+                ]);
             } else {
                 $lsd_error = 'Something went wrong sending your message. Please email us directly.';
             }
@@ -76,8 +100,7 @@ get_header(); ?>
                         style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 14px;">
                         Also find me on</div>
                     <div style="display: flex; gap: 10px;">
-                        <a href="https://www.linkedin.com/in/zane-creek/"
-                            target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.linkedin.com/in/zane-creek/" target="_blank" rel="noopener noreferrer"
                             style="background: var(--warm-white); border: 1px solid var(--border); padding: 8px 16px; border-radius: var(--radius); font-size: 0.82rem; font-weight: 500; color: var(--charcoal); transition: border-color 0.18s ease; display:inline-flex; align-items:center; gap:7px; text-decoration:none;">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15">
                                 <path fill="#0A66C2"
@@ -101,14 +124,16 @@ get_header(); ?>
                                 <div style="text-align: center; padding: 16px 0;">
                                     <div style="font-size: 2rem; margin-bottom: 16px;">✅</div>
                                     <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Message received!</h3>
-                                    <p style="color: var(--light-gray); font-size: 0.92rem; margin: 0;">Thanks for reaching out. I'll get back to you within a few days.</p>
+                                    <p style="color: var(--light-gray); font-size: 0.92rem; margin: 0;">Thanks for reaching out.
+                                        I'll get back to you within a few days.</p>
                                 </div>
 
                             <?php else: ?>
                                 <h3 style="margin-bottom: 24px; font-size: 1.1rem;">Send a message</h3>
 
                                 <?php if ($lsd_error): ?>
-                                    <div style="background: #fff3f3; border: 1.5px solid #f5c2c2; border-radius: var(--radius); padding: 12px 16px; margin-bottom: 20px; font-size: 0.88rem; color: #c0392b;">
+                                    <div
+                                        style="background: #fff3f3; border: 1.5px solid #f5c2c2; border-radius: var(--radius); padding: 12px 16px; margin-bottom: 20px; font-size: 0.88rem; color: #c0392b;">
                                         <?php echo esc_html($lsd_error); ?>
                                     </div>
                                 <?php endif; ?>
@@ -117,7 +142,8 @@ get_header(); ?>
                                     <?php wp_nonce_field('lsd_contact', 'lsd_contact_nonce'); ?>
                                     <div style="margin-bottom: 20px;">
                                         <label
-                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Your Name</label>
+                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Your
+                                            Name</label>
                                         <input type="text" name="contact_name" placeholder="Jordan Doe"
                                             value="<?php echo esc_attr($_POST['contact_name'] ?? ''); ?>"
                                             style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
@@ -125,7 +151,8 @@ get_header(); ?>
 
                                     <div style="margin-bottom: 20px;">
                                         <label
-                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Email Address</label>
+                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Email
+                                            Address</label>
                                         <input type="email" name="contact_email" placeholder="example@email.com"
                                             value="<?php echo esc_attr($_POST['contact_email'] ?? ''); ?>"
                                             style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
@@ -139,7 +166,8 @@ get_header(); ?>
                                     </div>
 
                                     <button type="submit"
-                                        style="background: var(--ink); color: var(--white); border: none; padding: 13px 28px; border-radius: var(--radius); font-family: var(--font); font-size: 0.875rem; font-weight: 600; cursor: pointer;">Send message</button>
+                                        style="background: var(--ink); color: var(--white); border: none; padding: 13px 28px; border-radius: var(--radius); font-family: var(--font); font-size: 0.875rem; font-weight: 600; cursor: pointer;">Send
+                                        message</button>
                                 </form>
                             <?php endif; ?>
 
