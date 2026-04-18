@@ -881,8 +881,8 @@ strong { font-weight: 600; color: var(--ink); }
     .about-card { background: #ffffff; border: 1px solid #e8e8e5; border-top: 3px solid var(--color-yellow, #FFF01F); padding: 28px 24px; display: flex; flex-direction: column; }
     .about-card__heading { font-size: 1rem; font-weight: 700; margin: 0 0 10px; color: var(--color-ink, #111111); }
     .about-card__body { font-size: 0.9375rem; line-height: 1.65; color: #444444; margin: 0 0 16px; flex: 1; }
-    .about-card__link { font-size: 0.875rem; font-weight: 600; color: var(--color-ink, #111111) !important; text-decoration: underline !important; letter-spacing: 0.01em; transition: opacity 0.15s; }
-    .about-card__link:hover { opacity: 0.6; }
+    .about-card__link { font-size: 0.875rem; font-weight: 600; color: var(--color-ink, #111111) !important; text-decoration: none !important; letter-spacing: 0.01em; transition: opacity 0.15s; }
+    .about-card__link:hover { opacity: 0.6; text-decoration: none !important; }
 
     .about-steps { display: flex; flex-direction: column; border-left: 2px solid var(--color-yellow, #FFF01F); margin-left: 20px; }
     .about-step { display: flex; gap: 28px; align-items: flex-start; padding: 0 0 40px 36px; position: relative; }
