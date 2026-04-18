@@ -414,7 +414,7 @@ strong { font-weight: 600; color: var(--ink); }
   transition: color var(--transition);
 }
 
-.post-card:hover .post-card__title { color: var(--yellow-dark); }
+.post-card:hover .post-card__title { color: var(--ink); }
 
 .post-card__excerpt {
   font-size: 0.875rem;
