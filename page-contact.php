@@ -50,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce']))
                     'body' => $brevo_payload,
                     'timeout' => 10,
                 ]);
-
-                error_log('Brevo response: ' . print_r($brevo_response, true));
             } else {
                 $lsd_error = 'Something went wrong sending your message. Please email us directly.';
             }
