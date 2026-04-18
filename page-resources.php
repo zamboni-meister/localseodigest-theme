@@ -19,6 +19,32 @@ get_header(); ?>
         </div>
     <?php else : ?>
 
+   <!-- Guides Section -->
+    <div style="padding: 56px 0 0;">
+        <div class="section-header">
+            <h2>Guides</h2>
+        </div>
+        <div class="resources-grid">
+            <?php
+            $lsd_guides = array(
+                array( 'icon' => '📍', 'title' => 'GBP Optimization Guide', 'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
+                array( 'icon' => '🗂️', 'title' => 'Local Citation Guide', 'desc' => 'How to build consistent citations across directories to strengthen your local rankings.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
+                array( 'icon' => '⭐', 'title' => 'Review Generation Guide', 'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
+                array( 'icon' => '🗺️', 'title' => 'Local Pack Ranking Guide', 'desc' => 'What actually drives local pack rankings — and how to improve your position.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
+            );
+            foreach ( $lsd_guides as $guide ) :
+            ?>
+            <a href="<?php echo esc_url( $guide['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
+                <div class="resource-card__icon"><?php echo $guide['icon']; ?></div>
+                <h3 class="resource-card__title"><?php echo esc_html( $guide['title'] ); ?></h3>
+                <p class="resource-card__desc"><?php echo esc_html( $guide['desc'] ); ?></p>
+                <span class="resource-card__link"><?php echo esc_html( $guide['label'] ); ?> &rarr;</span>
+            </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    
+
     <!-- Tools Section -->
     <div style="padding: 56px 0 0;">
         <div class="section-header">
@@ -41,31 +67,6 @@ get_header(); ?>
                 <h3 class="resource-card__title"><?php echo esc_html( $tool['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $tool['desc'] ); ?></p>
                 <span class="resource-card__link"><?php echo esc_html( $tool['label'] ); ?> &rarr;</span>
-            </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-
-    <!-- Guides Section -->
-    <div style="padding: 56px 0 0;">
-        <div class="section-header">
-            <h2>Guides</h2>
-        </div>
-        <div class="resources-grid">
-            <?php
-            $lsd_guides = array(
-                array( 'icon' => '📍', 'title' => 'GBP Optimization Guide', 'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
-                array( 'icon' => '🗂️', 'title' => 'Local Citation Guide', 'desc' => 'How to build consistent citations across directories to strengthen your local rankings.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
-                array( 'icon' => '⭐', 'title' => 'Review Generation Guide', 'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
-                array( 'icon' => '🗺️', 'title' => 'Local Pack Ranking Guide', 'desc' => 'What actually drives local pack rankings — and how to improve your position.', 'link' => home_url( '/blog/' ), 'label' => 'Read guide' ),
-            );
-            foreach ( $lsd_guides as $guide ) :
-            ?>
-            <a href="<?php echo esc_url( $guide['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <div class="resource-card__icon"><?php echo $guide['icon']; ?></div>
-                <h3 class="resource-card__title"><?php echo esc_html( $guide['title'] ); ?></h3>
-                <p class="resource-card__desc"><?php echo esc_html( $guide['desc'] ); ?></p>
-                <span class="resource-card__link"><?php echo esc_html( $guide['label'] ); ?> &rarr;</span>
             </a>
             <?php endforeach; ?>
         </div>
