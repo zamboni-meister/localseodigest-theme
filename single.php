@@ -39,14 +39,6 @@
         </div>
         <?php endif; ?>
 
-        <!-- Author box -->
-        <div class="author-box">
-            <div class="author-box__avatar">Z</div>
-            <div>
-                <div class="author-box__name"><?php the_author(); ?></div>
-                <p class="author-box__bio">SEO Specialist at Timmermann Group. Documenting the local SEO journey to help business owners and marketers grow their local visibility.</p>
-            </div>
-        </div>
 
         <!-- Post navigation -->
         <div style="display: flex; justify-content: space-between; gap: 24px; padding: 32px 0; border-top: 1px solid var(--border); flex-wrap: wrap;">
