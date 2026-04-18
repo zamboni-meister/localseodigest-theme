@@ -1406,7 +1406,7 @@ strong { font-weight: 600; color: var(--ink); }
 	padding-top: 14px;
 	margin-top: auto;
 }
-.lsd-resource-card__link:hover { text-decoration: underline; }
+.lsd-resource-card__link:hover { text-decoration: none; }
 
 
 /* ── Homepage responsive ────────────────────────────────── */
