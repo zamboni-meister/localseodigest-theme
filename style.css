@@ -1312,7 +1312,7 @@ strong { font-weight: 600; color: var(--ink); }
 	width: 240px;
 	font-family: inherit;
 }
-.lsd-nl-strip__input::placeholder { color: #555555; }
+.lsd-nl-strip__input::placeholder { color: #767676; }
 .lsd-nl-strip__input:focus {
 	outline: none;
 	border-color: #FFF01F;
