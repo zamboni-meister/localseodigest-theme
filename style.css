@@ -1165,7 +1165,7 @@ strong { font-weight: 600; color: var(--ink); }
 }
 
 .lsd-section__title {
-	font-size: 10px;
+	font-size: 18px;
 	font-weight: 800;
 	letter-spacing: 0.16em;
 	text-transform: uppercase;

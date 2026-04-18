@@ -16,7 +16,7 @@ $btn1_url       = get_post_meta( $post_id, '_lsd_btn1_url',       true ) ?: home
 $btn2_text      = get_post_meta( $post_id, '_lsd_btn2_text',      true ) ?: 'Read the Blog';
 $btn2_url       = get_post_meta( $post_id, '_lsd_btn2_url',       true ) ?: home_url( '/newsletter/' );
 $nl_headline    = get_post_meta( $post_id, '_lsd_nl_headline',    true ) ?: 'Insights to your <span>Inbox</span></span>';
-$nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP changelog, ranking signal breakdowns, and local search intel — every Friday. Free.';
+$nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'Industry-leading updates and deep Local SEO learning — Free.';
 ?>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -115,7 +115,7 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section class="lsd-section lsd-section--gray">
 	<div class="lsd-section__header">
-		<h2 class="lsd-section__title">Top resources</h2>
+		<h2 class="lsd-section__title">Resources</h2>
 		<a href="<?php echo esc_url( home_url( '/resources/' ) ); ?>" class="lsd-section__link">View all resources →</a>
 	</div>
 
