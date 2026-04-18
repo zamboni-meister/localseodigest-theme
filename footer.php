@@ -4,9 +4,7 @@
 
             <div class="footer-brand">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-brand__logo">
-                    <img src="https://localseodigest.com/wp-content/uploads/2026/04/Local-SEO-Digest-Logo-1.webp"
-                        alt="Local SEO Digest logo"
-                        style="height: 28px; width: auto; display: inline-block; vertical-align: middle; margin-right: 8px;">Local
+                    <img src="https://localseodigest.com/wp-content/uploads/2026/04/Local-SEO-Digest-Logo-1.webp" alt="Local SEO Digest" style="height: 28px; width: auto; display: inline-block; vertical-align: middle; margin-right: 6px; margin-left: -10px;">Local
                     SEO <span>Digest</span>
                 </a>
                 <p class="footer-brand__desc">Documenting the journey of mastering local SEO — helping business owners
