@@ -1028,7 +1028,7 @@ strong { font-weight: 600; color: var(--ink); }
   margin-bottom: 20px;
 }
 
-.footer-brand__logo span { color: rgba(255,255,255,0.7); font-weight: 400; }
+.footer-brand__logo span { color: #ffffff; font-weight: 400; }
 
 .footer-brand__desc { font-size: 0.875rem; line-height: 1.65; max-width: 240px; }
 
