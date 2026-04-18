@@ -157,31 +157,31 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
 			endwhile;
 			wp_reset_postdata();
 		else :
-			// Hardcoded placeholders until resource posts are created
+			// Hardcoded placeholders — each links directly to its section on the Resources page
 			$placeholders = array(
 				array(
-					'type'  => 'Checklist',
+					'type'  => 'Guides',
 					'free'  => true,
-					'title' => 'GBP Audit Checklist',
-					'desc'  => 'A complete audit framework for Google Business Profiles — covers categories, photos, Q&A, posts, and every ranking-relevant field.',
-					'link'  => home_url( '/resources/' ),
-					'label' => 'Download ↓',
+					'title' => 'Local SEO Guides',
+					'desc'  => 'Step-by-step guides covering GBP optimization, citation building, review generation, and local pack rankings.',
+					'link'  => home_url( '/resources/#guides' ),
+					'label' => 'Browse guides →',
 				),
 				array(
-					'type'  => 'Templates',
+					'type'  => 'Tools',
 					'free'  => true,
-					'title' => 'Review Response Template Pack',
-					'desc'  => 'Plug-and-play templates for responding to positive, neutral, and negative reviews — written to signal relevance to Google.',
-					'link'  => home_url( '/resources/' ),
-					'label' => 'Download ↓',
+					'title' => 'Essential Tools',
+					'desc'  => 'The core tools every local SEO practitioner needs — from Google Business Profile to Search Console and Analytics.',
+					'link'  => home_url( '/resources/#tools' ),
+					'label' => 'See the tools →',
 				),
 				array(
-					'type'  => 'Guide',
-					'free'  => false,
-					'title' => 'Local Ranking Signals 2026',
-					'desc'  => 'A curated breakdown of the factors that actually move the needle in local pack rankings — based on current research and practitioner data.',
-					'link'  => home_url( '/resources/' ),
-					'label' => 'Read the guide →',
+					'type'  => 'Reading',
+					'free'  => true,
+					'title' => 'Recommended Reading',
+					'desc'  => 'Google\'s own documentation on how search works, how results are ranked, and how local results are determined.',
+					'link'  => home_url( '/resources/#recommended-reading' ),
+					'label' => 'Start reading →',
 				),
 			);
 			foreach ( $placeholders as $p ) :

@@ -20,7 +20,7 @@ get_header(); ?>
     <?php else : ?>
 
     <!-- Guides Section -->
-    <div style="padding: 56px 0 0;">
+    <div id="guides" style="padding: 56px 0 0;">
         <div class="section-header">
             <h2>Guides</h2>
         </div>
@@ -44,7 +44,7 @@ get_header(); ?>
     </div>
 
     <!-- Tools Section -->
-    <div style="padding: 56px 0 0;">
+    <div id="tools" style="padding: 56px 0 0;">
         <div class="section-header">
             <h2>Essential Tools</h2>
         </div>
@@ -67,7 +67,7 @@ get_header(); ?>
     </div>
 
     <!-- Recommended Reading Section -->
-    <div style="padding: 56px 0 56px;">
+    <div id="recommended-reading" style="padding: 56px 0 56px;">
         <div class="section-header">
             <h2>Recommended Reading</h2>
         </div>
