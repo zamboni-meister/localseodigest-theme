@@ -19,7 +19,7 @@
                     <?php the_custom_logo(); ?>
                 <?php else: ?>
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-                        <img src="https://localseodigest.com/wp-content/uploads/2026/04/Local-SEO-Digest-Logo-1.webp" alt="Local SEO Digest" style="height: 32px; width: auto; display: inline-block; vertical-align: middle; margin-right: 6px; margin-left: -10px;">Local
+                        <img src="https://localseodigest.com/wp-content/uploads/2026/04/Local-SEO-Digest-Logo-1.webp" alt="Local SEO Digest logo" style="height: 32px; width: auto; display: inline-block; vertical-align: middle; margin-right: 6px; margin-left: -10px;">Local
                         SEO <span>Digest</span>
                     </a>
                 <?php endif; ?>
