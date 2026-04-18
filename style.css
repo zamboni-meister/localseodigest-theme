@@ -1602,6 +1602,8 @@ strong { font-weight: 600; color: var(--ink); }
 .lsd-article-card {
 	position: relative;
 	overflow: hidden;
+  color: inherit;
+  text-decoration: none;
 }
 
 .lsd-article-card::before {
