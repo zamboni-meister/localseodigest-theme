@@ -27,15 +27,15 @@ get_header(); ?>
         <div class="resources-grid">
             <?php
             $lsd_guides = array(
-                array( 'title' => 'GBP Optimization Guide', 'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url( '/blog/' ) ),
-                array( 'title' => 'Local Citation Guide', 'desc' => 'How to build consistent citations across directories to strengthen your local rankings.', 'link' => home_url( '/blog/' ) ),
-                array( 'title' => 'Review Generation Guide', 'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.', 'link' => home_url( '/blog/' ) ),
-                array( 'title' => 'Local Pack Ranking Guide', 'desc' => 'What actually drives local pack rankings — and how to improve your position.', 'link' => home_url( '/blog/' ) ),
+                array( 'title' => 'GBP Optimization Guide',      'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url( '/blog/' ), 'cat' => 'guide', 'cat_label' => 'Guide' ),
+                array( 'title' => 'Local Citation Guide',         'desc' => 'How to build consistent citations across directories to strengthen your local rankings.',          'link' => home_url( '/blog/' ), 'cat' => 'guide', 'cat_label' => 'Guide' ),
+                array( 'title' => 'Review Generation Guide',      'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.',            'link' => home_url( '/blog/' ), 'cat' => 'guide', 'cat_label' => 'Guide' ),
+                array( 'title' => 'Local Pack Ranking Guide',     'desc' => 'What actually drives local pack rankings — and how to improve your position.',                     'link' => home_url( '/blog/' ), 'cat' => 'guide', 'cat_label' => 'Guide' ),
             );
             foreach ( $lsd_guides as $guide ) :
             ?>
             <a href="<?php echo esc_url( $guide['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <span class="resource-card__cat">Guide</span>
+                <span class="resource-card__cat resource-card__cat--<?php echo esc_attr( $guide['cat'] ); ?>"><?php echo esc_html( $guide['cat_label'] ); ?></span>
                 <h3 class="resource-card__title"><?php echo esc_html( $guide['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $guide['desc'] ); ?></p>
             </a>
@@ -51,14 +51,14 @@ get_header(); ?>
         <div class="resources-grid">
             <?php
             $tools = array(
-                array( 'title' => 'Google Business Profile', 'desc' => 'The foundation of local SEO. Claim, verify, and optimize your GBP listing.', 'link' => 'https://business.google.com' ),
-                array( 'title' => 'Google Search Console', 'desc' => 'Monitor your site\'s performance in Google Search and fix issues.', 'link' => 'https://search.google.com/search-console' ),
-                array( 'title' => 'Google Analytics', 'desc' => 'Track website traffic, user behavior, and conversions from local search.', 'link' => 'https://analytics.google.com' ),
+                array( 'title' => 'Google Business Profile', 'desc' => 'The foundation of local SEO. Claim, verify, and optimize your GBP listing.',                    'link' => 'https://business.google.com',                         'cat' => 'tool', 'cat_label' => 'Tool' ),
+                array( 'title' => 'Google Search Console',   'desc' => 'Monitor your site\'s performance in Google Search and fix issues.',                              'link' => 'https://search.google.com/search-console',            'cat' => 'tool', 'cat_label' => 'Tool' ),
+                array( 'title' => 'Google Analytics',        'desc' => 'Track website traffic, user behavior, and conversions from local search.',                       'link' => 'https://analytics.google.com',                        'cat' => 'tool', 'cat_label' => 'Tool' ),
             );
             foreach ( $tools as $tool ) :
             ?>
             <a href="<?php echo esc_url( $tool['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <span class="resource-card__cat">Tool</span>
+                <span class="resource-card__cat resource-card__cat--<?php echo esc_attr( $tool['cat'] ); ?>"><?php echo esc_html( $tool['cat_label'] ); ?></span>
                 <h3 class="resource-card__title"><?php echo esc_html( $tool['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $tool['desc'] ); ?></p>
             </a>
