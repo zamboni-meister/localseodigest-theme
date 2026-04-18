@@ -30,10 +30,9 @@ get_header(); ?>
                 <div class="resources-grid">
                     <?php
                     $lsd_guides = array(
-                        array('title' => 'GBP Optimization Guide', 'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url('/blog/'), 'cat' => 'guide', 'cat_label' => 'Guide'),
-                        array('title' => 'Local Citation Guide', 'desc' => 'How to build consistent citations across directories to strengthen your local rankings.', 'link' => home_url('/blog/'), 'cat' => 'guide', 'cat_label' => 'Guide'),
-                        array('title' => 'Review Generation Guide', 'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.', 'link' => home_url('/blog/'), 'cat' => 'guide', 'cat_label' => 'Guide'),
-                        array('title' => 'Local Pack Ranking Guide', 'desc' => 'What actually drives local pack rankings — and how to improve your position.', 'link' => home_url('/blog/'), 'cat' => 'guide', 'cat_label' => 'Guide'),
+                        array('title' => 'What is Local SEO?', 'desc' => 'BrightLocal\'s beginner-friendly breakdown of local SEO — what it is, why it matters, and how it differs from traditional SEO.', 'link' => 'https://www.brightlocal.com/learn/what-is-local-seo/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
+                        array('title' => 'How to do Local SEO', 'desc' => 'A practical, step-by-step guide to optimizing your local search presence — from GBP setup to citations and beyond.', 'link' => 'https://www.brightlocal.com/learn/local-seo/local-search-optimization/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
+                        array('title' => 'How to Improve Local SEO Rankings', 'desc' => 'Backlinko\'s definitive guide to ranking higher in local search — covering every major ranking factor with actionable tactics.', 'link' => 'https://backlinko.com/local-seo-guide', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
                     );
                     foreach ($lsd_guides as $guide):
                         ?>
@@ -81,9 +80,9 @@ get_header(); ?>
                 <div class="resources-grid">
                     <?php
                     $reading = array(
-                        array('title' => 'What is Local SEO?', 'desc' => 'BrightLocal\'s beginner-friendly breakdown of local SEO — what it is, why it matters, and how it differs from traditional SEO.', 'link' => 'https://www.brightlocal.com/learn/what-is-local-seo/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
-                        array('title' => 'How to do Local SEO', 'desc' => 'A practical, step-by-step guide to optimizing your local search presence — from GBP setup to citations and beyond.', 'link' => 'https://www.brightlocal.com/learn/local-seo/local-search-optimization/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
-                        array('title' => 'How to Improve Local SEO Rankings', 'desc' => 'Backlinko\'s definitive guide to ranking higher in local search — covering every major ranking factor with actionable tactics.', 'link' => 'https://backlinko.com/local-seo-guide', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
+                        array('title' => 'How Google Organizes Information', 'desc' => 'How Google\'s crawlers discover, render, and index content across hundreds of billions of pages before any ranking occurs.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/organizing-information/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
+                        array('title' => 'How Google Ranks Results', 'desc' => 'Google\'s breakdown of the five core ranking signals: query meaning, content relevance, quality, usability, and context.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/ranking-results/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
+                        array('title' => 'How Google Ranks Local Results', 'desc' => 'Google\'s official explanation of the three local ranking factors: relevance, distance, and prominence.', 'link' => 'https://support.google.com/business/answer/7091', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
                     );
                     foreach ($reading as $item):
                         ?>
