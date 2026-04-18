@@ -3,7 +3,7 @@
         <div class="footer-grid">
 
             <div class="footer-brand">
-                <div class="footer-brand__logo">Local SEO <span>Digest</span></div>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-brand__logo">Local SEO <span>Digest</span></a>
                 <p class="footer-brand__desc">Documenting the journey of mastering local SEO — helping business owners
                     and marketers grow their local visibility.</p>
             </div>
