@@ -173,7 +173,7 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
 				),
 				array(
 					'cat'       => 'fundamentals',
-					'cat_label' => 'Reading',
+					'cat_label' => 'Fundamentals',
 					'title'     => 'Recommended Reading',
 					'desc'      => 'Google\'s own documentation on how search works, how results are ranked, and how local results are determined.',
 					'link'      => home_url( '/resources/#recommended-reading' ),
