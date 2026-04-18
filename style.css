@@ -769,7 +769,8 @@ strong { font-weight: 600; color: var(--ink); }
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-}/* ============================================================
+
+  /* ============================================================
    RESOURCES PAGE
    ============================================================ */
 .resources-header {
@@ -793,10 +794,16 @@ strong { font-weight: 600; color: var(--ink); }
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
 }
 
 .resource-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.resource-card--linked:hover {
+  border-color: #FFF01F;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   transform: translateY(-2px);
 }
@@ -816,14 +823,14 @@ strong { font-weight: 600; color: var(--ink); }
 .resource-card__title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
 .resource-card__desc { font-size: 0.875rem; color: var(--mid-gray); line-height: 1.6; margin-bottom: 16px; }
 
-/* Resource card arrow — single arrow that slides right on card hover */
+/* Resource card arrow — slides right on hover; border flips to brand yellow */
 .resource-card__arrow {
   display: inline-block;
   font-size: 1.1rem;
   color: #111111;
   margin-top: auto;
   padding-top: 24px;
-  transition: transform 0.25s ease, color 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .resource-card--linked:hover .resource-card__arrow {
