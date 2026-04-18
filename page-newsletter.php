@@ -13,8 +13,8 @@ get_header();
 <section class="lsd-nl-page__hero">
 	<div class="lsd-nl-page__hero-inner">
 		<p class="lsd-nl-page__eyebrow">Free newsletter</p>
-		<h1 class="lsd-nl-page__headline">Local SEO intel,<br>every Friday.</h1>
-		<p class="lsd-nl-page__sub">The <strong>Local SEO Digest</strong> breaks down GBP changes, ranking signal updates, and practical local search strategy — written for SEO professionals and business owners who want to stay ahead.</p>
+		<h1 class="lsd-nl-page__headline">Local SEO Newsletter</h1>
+		<p class="lsd-nl-page__sub">News that actually matters and tools, guides, and resources worth your time.</p>
 	</div>
 </section>
 
@@ -28,10 +28,9 @@ get_header();
 		<div class="lsd-nl-page__value">
 			<p class="lsd-nl-page__value-label">What's inside</p>
 			<ul class="lsd-nl-page__value-list">
-				<li>GBP changelog — what changed, what it means for rankings</li>
-				<li>Ranking signal breakdowns based on current research</li>
-				<li>Local search news filtered for what actually matters</li>
-				<li>Tools, templates, and resources worth your time</li>
+				<li>Curated Local SEO news and insights</li>
+				<li>Tools, tips, and reading recommendations from the fundametals-upward</li>
+                <li>Grounded research and timely updates</li>
 			</ul>
 		</div>
 
@@ -55,7 +54,7 @@ get_header();
 				<input type="text" name="email_address_check" value="" style="display:none;">
 				<input type="hidden" name="locale" value="en">
 			</form>
-			<p class="lsd-nl-page__disclaimer">Free. Every Friday. No spam — unsubscribe any time.</p>
+			<p class="lsd-nl-page__disclaimer">We'll never sell or misuse your info. Unsubscribe any time.</p>
 		</div>
 
 	</div>
