@@ -46,6 +46,7 @@ get_header(); ?>
                         Also find me on</div>
                     <div style="display: flex; gap: 10px;">
                         <a href="https://www.linkedin.com/in/zane-creek/"
+                            target="_blank" rel="noopener noreferrer"
                             style="background: var(--warm-white); border: 1px solid var(--border); padding: 8px 16px; border-radius: var(--radius); font-size: 0.82rem; font-weight: 500; color: var(--charcoal); transition: border-color 0.18s ease; display:inline-flex; align-items:center; gap:7px; text-decoration:none;">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15">
                                 <path fill="#0A66C2"
@@ -55,7 +56,7 @@ get_header(); ?>
                         </a>
                     </div>
                 </div>
-                
+
             </div>
 
             <div>
