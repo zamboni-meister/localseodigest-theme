@@ -136,23 +136,19 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
 				$res_free = get_post_meta( get_the_ID(), '_lsd_resource_free', true );
 				$res_link_label = get_post_meta( get_the_ID(), '_lsd_resource_link_label', true ) ?: 'Read the guide →';
 		?>
-			<div class="lsd-resource-card">
+			<a href="<?php the_permalink(); ?>" class="lsd-resource-card">
 				<div class="lsd-resource-card__type">
 					<?php echo esc_html( $res_type ); ?>
 					<?php if ( $res_free ) : ?>
 						<span class="lsd-resource-card__free">FREE</span>
 					<?php endif; ?>
 				</div>
-				<h3 class="lsd-resource-card__title">
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				</h3>
+				<h3 class="lsd-resource-card__title"><?php the_title(); ?></h3>
 				<p class="lsd-resource-card__desc">
 					<?php echo wp_trim_words( get_the_excerpt(), 24, '…' ); ?>
 				</p>
-				<a href="<?php the_permalink(); ?>" class="lsd-resource-card__link">
-					<?php echo esc_html( $res_link_label ); ?>
-				</a>
-			</div>
+				<span class="lsd-resource-card__link"><?php echo esc_html( $res_link_label ); ?></span>
+			</a>
 		<?php
 			endwhile;
 			wp_reset_postdata();
@@ -160,47 +156,40 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP
 			// Hardcoded placeholders — each links directly to its section on the Resources page
 			$placeholders = array(
 				array(
-					'type'  => 'Guides',
-					'free'  => true,
-					'title' => 'Local SEO Guides',
-					'desc'  => 'Step-by-step guides covering GBP optimization, citation building, review generation, and local pack rankings.',
-					'link'  => home_url( '/resources/#guides' ),
-					'label' => 'Browse guides →',
+					'cat'       => 'guide',
+					'cat_label' => 'Guides',
+					'title'     => 'Local SEO Guides',
+					'desc'      => 'Step-by-step guides covering GBP optimization, citation building, review generation, and local pack rankings.',
+					'link'      => home_url( '/resources/#guides' ),
+					'label'     => 'Browse guides →',
 				),
 				array(
-					'type'  => 'Tools',
-					'free'  => true,
-					'title' => 'Essential Tools',
-					'desc'  => 'The core tools every local SEO practitioner needs — from Google Business Profile to Search Console and Analytics.',
-					'link'  => home_url( '/resources/#tools' ),
-					'label' => 'See the tools →',
+					'cat'       => 'tool',
+					'cat_label' => 'Tools',
+					'title'     => 'Essential Tools',
+					'desc'      => 'The core tools every local SEO practitioner needs — from Google Business Profile to Search Console and Analytics.',
+					'link'      => home_url( '/resources/#tools' ),
+					'label'     => 'See the tools →',
 				),
 				array(
-					'type'  => 'Reading',
-					'free'  => true,
-					'title' => 'Recommended Reading',
-					'desc'  => 'Google\'s own documentation on how search works, how results are ranked, and how local results are determined.',
-					'link'  => home_url( '/resources/#recommended-reading' ),
-					'label' => 'Start reading →',
+					'cat'       => 'fundamentals',
+					'cat_label' => 'Reading',
+					'title'     => 'Recommended Reading',
+					'desc'      => 'Google\'s own documentation on how search works, how results are ranked, and how local results are determined.',
+					'link'      => home_url( '/resources/#recommended-reading' ),
+					'label'     => 'Start reading →',
 				),
 			);
 			foreach ( $placeholders as $p ) :
 		?>
-			<div class="lsd-resource-card">
-				<div class="lsd-resource-card__type">
-					<?php echo esc_html( $p['type'] ); ?>
-					<?php if ( $p['free'] ) : ?>
-						<span class="lsd-resource-card__free">FREE</span>
-					<?php endif; ?>
-				</div>
-				<h3 class="lsd-resource-card__title">
-					<a href="<?php echo esc_url( $p['link'] ); ?>"><?php echo esc_html( $p['title'] ); ?></a>
-				</h3>
+			<a href="<?php echo esc_url( $p['link'] ); ?>" class="lsd-resource-card">
+				<span class="resource-card__cat resource-card__cat--<?php echo esc_attr( $p['cat'] ); ?>">
+					<?php echo esc_html( $p['cat_label'] ); ?>
+				</span>
+				<h3 class="lsd-resource-card__title"><?php echo esc_html( $p['title'] ); ?></h3>
 				<p class="lsd-resource-card__desc"><?php echo esc_html( $p['desc'] ); ?></p>
-				<a href="<?php echo esc_url( $p['link'] ); ?>" class="lsd-resource-card__link">
-					<?php echo esc_html( $p['label'] ); ?>
-				</a>
-			</div>
+				<span class="lsd-resource-card__link"><?php echo esc_html( $p['label'] ); ?></span>
+			</a>
 		<?php
 			endforeach;
 		endif;

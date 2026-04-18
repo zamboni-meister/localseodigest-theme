@@ -29,7 +29,7 @@ get_header();
 			<p class="lsd-nl-page__value-label">What's inside</p>
 			<ul class="lsd-nl-page__value-list">
 				<li>Curated Local SEO news and insights</li>
-				<li>Tools, tips, and reading recommendations from the fundametals-upward</li>
+				<li>Tools, tips, and reading recommendations from the fundametals-upwards</li>
                 <li>Grounded research and timely updates</li>
 			</ul>
 		</div>
