@@ -13,7 +13,6 @@
         <div style="display: flex; flex-direction: column; gap: 0;">
             <?php while ( have_posts() ) : the_post(); ?>
             <article style="padding: 28px 0; border-bottom: 1px solid var(--border);">
-                <?php lsd_post_category_badge(); ?>
                 <h2 style="font-size: 1.15rem; margin: 8px 0 10px;">
                     <a href="<?php the_permalink(); ?>" style="color: var(--ink);"><?php the_title(); ?></a>
                 </h2>
