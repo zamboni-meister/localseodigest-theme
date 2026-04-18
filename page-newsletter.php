@@ -14,7 +14,7 @@ get_header();
 	<div class="lsd-nl-page__hero-inner">
 		<p class="lsd-nl-page__eyebrow">Free newsletter</p>
 		<h1 class="lsd-nl-page__headline">Local SEO Newsletter</h1>
-		<p class="lsd-nl-page__sub">News that actually matters and tools, guides, and resources worth your time.</p>
+		<p class="lsd-nl-page__sub">News that actually matters + tools, guides, and resources worth your time.</p>
 	</div>
 </section>
 
