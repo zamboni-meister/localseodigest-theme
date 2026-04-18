@@ -67,7 +67,7 @@ $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading upda
 				<a href="<?php the_permalink(); ?>" class="lsd-article-card">
 					<h3 class="lsd-article-card__title"><?php the_title(); ?></h3>
 					<p class="lsd-article-card__excerpt">
-						<?php echo wp_trim_words(get_the_excerpt(), 22, '…'); ?>
+						<?php echo wp_trim_words(get_the_excerpt(), 40, '…'); ?>
 					</p>
 					<div class="lsd-article-card__meta">
 						<span><?php echo get_the_date('M j, Y'); ?></span>
