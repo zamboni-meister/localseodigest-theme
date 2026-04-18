@@ -35,7 +35,6 @@
                         </div>
                         <?php endif; ?>
                         <div class="post-card__body">
-                            <?php lsd_post_category_badge(); ?>
                             <h2 class="post-card__title" style="font-size: 1.05rem;">
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                             </h2>
