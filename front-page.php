@@ -10,7 +10,7 @@ get_header();
 $post_id = get_option('page_on_front');
 $hero_headline1 = get_post_meta($post_id, '_lsd_hero_headline1', true) ?: 'Master';
 $hero_headline2 = get_post_meta($post_id, '_lsd_hero_headline2', true) ?: 'local search.';
-$hero_sub = get_post_meta($post_id, '_lsd_hero_sub', true) ?: 'The one-stop-shop for SEO professionals and business owners who want to dominate Google\'s local results.';
+$hero_sub = get_post_meta($post_id, '_lsd_hero_sub', true) ?: 'Home base for SEO professionals and business owners who want to dominate Google\'s local results.';
 $btn1_text = get_post_meta($post_id, '_lsd_btn1_text', true) ?: 'Learn Local SEO';
 $btn1_url = get_post_meta($post_id, '_lsd_btn1_url', true) ?: home_url('/resources/');
 $btn2_text = get_post_meta($post_id, '_lsd_btn2_text', true) ?: 'Digest';
