@@ -2,6 +2,37 @@
 /*
  * Template Name: Contact Page
  */
+
+$lsd_success = false;
+$lsd_error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce'])) {
+    if (!wp_verify_nonce($_POST['lsd_contact_nonce'], 'lsd_contact')) {
+        $lsd_error = 'Security check failed. Please try again.';
+    } else {
+        $name    = sanitize_text_field($_POST['contact_name'] ?? '');
+        $email   = sanitize_email($_POST['contact_email'] ?? '');
+        $message = sanitize_textarea_field($_POST['contact_message'] ?? '');
+
+        if (empty($name) || empty($email) || empty($message)) {
+            $lsd_error = 'Please fill out all fields before submitting.';
+        } elseif (!is_email($email)) {
+            $lsd_error = 'Please enter a valid email address.';
+        } else {
+            $to      = 'info@localseodigest.com';
+            $subject = 'New contact message from ' . $name;
+            $body    = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+            $headers = ['Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $email];
+
+            if (wp_mail($to, $subject, $body, $headers)) {
+                $lsd_success = true;
+            } else {
+                $lsd_error = 'Something went wrong sending your message. Please email us directly.';
+            }
+        }
+    }
+}
+
 get_header(); ?>
 
 <div class="archive-header">
@@ -56,7 +87,6 @@ get_header(); ?>
                         </a>
                     </div>
                 </div>
-
             </div>
 
             <div>
@@ -66,33 +96,53 @@ get_header(); ?>
                         <div class="entry-content"><?php the_content(); ?></div>
                     <?php else: ?>
                         <div style="background: var(--warm-white); border-radius: var(--radius-lg); padding: 36px;">
-                            <h3 style="margin-bottom: 24px; font-size: 1.1rem;">Send a message</h3>
-                            <form method="post" action="#">
-                                <?php wp_nonce_field('lsd_contact', 'lsd_contact_nonce'); ?>
-                                <div style="margin-bottom: 20px;">
-                                    <label
-                                        style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Your
-                                        Name</label>
-                                    <input type="text" name="contact_name" placeholder="Jordan Doe"
-                                        style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
+
+                            <?php if ($lsd_success): ?>
+                                <div style="text-align: center; padding: 16px 0;">
+                                    <div style="font-size: 2rem; margin-bottom: 16px;">✅</div>
+                                    <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Message received!</h3>
+                                    <p style="color: var(--light-gray); font-size: 0.92rem; margin: 0;">Thanks for reaching out. I'll get back to you within a few days.</p>
                                 </div>
-                                <div style="margin-bottom: 20px;">
-                                    <label
-                                        style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Email
-                                        Address</label>
-                                    <input type="email" name="contact_email" placeholder="example@email.com"
-                                        style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
-                                </div>
-                                <div style="margin-bottom: 20px;">
-                                    <label
-                                        style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Message</label>
-                                    <textarea name="contact_message" rows="5" placeholder="What's on your mind?"
-                                        style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white); resize: vertical;"></textarea>
-                                </div>
-                                <button type="submit"
-                                    style="background: var(--ink); color: var(--white); border: none; padding: 13px 28px; border-radius: var(--radius); font-family: var(--font); font-size: 0.875rem; font-weight: 600; cursor: pointer;">Send
-                                    message</button>
-                            </form>
+
+                            <?php else: ?>
+                                <h3 style="margin-bottom: 24px; font-size: 1.1rem;">Send a message</h3>
+
+                                <?php if ($lsd_error): ?>
+                                    <div style="background: #fff3f3; border: 1.5px solid #f5c2c2; border-radius: var(--radius); padding: 12px 16px; margin-bottom: 20px; font-size: 0.88rem; color: #c0392b;">
+                                        <?php echo esc_html($lsd_error); ?>
+                                    </div>
+                                <?php endif; ?>
+
+                                <form method="post" action="">
+                                    <?php wp_nonce_field('lsd_contact', 'lsd_contact_nonce'); ?>
+                                    <div style="margin-bottom: 20px;">
+                                        <label
+                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Your Name</label>
+                                        <input type="text" name="contact_name" placeholder="Jordan Doe"
+                                            value="<?php echo esc_attr($_POST['contact_name'] ?? ''); ?>"
+                                            style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <label
+                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Email Address</label>
+                                        <input type="email" name="contact_email" placeholder="example@email.com"
+                                            value="<?php echo esc_attr($_POST['contact_email'] ?? ''); ?>"
+                                            style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <label
+                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Message</label>
+                                        <textarea name="contact_message" rows="5" placeholder="What's on your mind?"
+                                            style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white); resize: vertical;"><?php echo esc_textarea($_POST['contact_message'] ?? ''); ?></textarea>
+                                    </div>
+
+                                    <button type="submit"
+                                        style="background: var(--ink); color: var(--white); border: none; padding: 13px 28px; border-radius: var(--radius); font-family: var(--font); font-size: 0.875rem; font-weight: 600; cursor: pointer;">Send message</button>
+                                </form>
+                            <?php endif; ?>
+
                         </div>
                     <?php endif; endwhile; ?>
             </div>
