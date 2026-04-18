@@ -871,7 +871,7 @@ strong { font-weight: 600; color: var(--ink); }
     .about-section--alt { background: var(--color-warm-white, #F7F7F5); }
     .about-section__inner { max-width: 960px; margin: 0 auto; }
     .about-section__inner--narrow { max-width: 680px; }
-    .about-section__title { font-size: 1.5rem; font-weight: 700; margin: 0 0 36px; padding-bottom: 16px; border-bottom: 2px solid var(--color-yellow, #FFF01F); display: inline-block; }
+    .about-section__title { font-size: 1.5rem; font-weight: 700; margin: 0 0 36px; padding-bottom: 16px; border-bottom: 2px solid var(--color-yellow, #000000); display: inline-block; }
     .about-section p { font-size: 1.0625rem; line-height: 1.75; margin: 0 0 18px; color: #333333; }
     .about-section p:last-child { margin-bottom: 0; }
     .about-section a { color: var(--color-ink, #111111); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
