@@ -769,9 +769,7 @@ strong { font-weight: 600; color: var(--ink); }
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-}
-
-/* ============================================================
+}/* ============================================================
    RESOURCES PAGE
    ============================================================ */
 .resources-header {
@@ -817,8 +815,20 @@ strong { font-weight: 600; color: var(--ink); }
 
 .resource-card__title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
 .resource-card__desc { font-size: 0.875rem; color: var(--mid-gray); line-height: 1.6; margin-bottom: 16px; }
-.resource-card__link { font-size: 0.8rem; font-weight: 600; color: var(--yellow-dark); text-transform: uppercase; letter-spacing: 0.05em; }
-.resource-card__link:hover { color: var(--ink); }
+
+/* Resource card arrow — single arrow that slides right on card hover */
+.resource-card__arrow {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: #111111;
+  margin-top: auto;
+  padding-top: 24px;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.resource-card--linked:hover .resource-card__arrow {
+  transform: translateX(6px);
+}
 
 /* ============================================================
    CONTACT PAGE
@@ -1388,34 +1398,4 @@ strong { font-weight: 600; color: var(--ink); }
 
 	.lsd-hero__btns { flex-direction: column; }
 	.lsd-btn { text-align: center; }
-}
-
-/* Resource card arrow — replaces text label with a thin line + arrow that expands
-   full width and flips to brand yellow on card hover */
-.resource-card__arrow {
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: #111111;
-    margin-top: auto;
-    padding-top: 24px;
-    position: relative;
-    transition: width 0.25s ease, background-color 0.25s ease;
-}
-
-.resource-card__arrow::after {
-    content: '→';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1rem;
-    line-height: 1;
-    color: #111111;
-    transition: color 0.25s ease;
-}
-
-.resource-card--linked:hover .resource-card__arrow {
-    width: 100%;
-    background-color: #FFF01F;
 }
