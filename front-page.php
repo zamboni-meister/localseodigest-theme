@@ -11,10 +11,10 @@ $post_id = get_option('page_on_front');
 $hero_headline1 = get_post_meta($post_id, '_lsd_hero_headline1', true) ?: 'Master';
 $hero_headline2 = get_post_meta($post_id, '_lsd_hero_headline2', true) ?: 'local search.';
 $hero_sub = get_post_meta($post_id, '_lsd_hero_sub', true) ?: 'The resource for SEO professionals and business owners who want to dominate Google\'s local results — GBP strategies, ranking signals, and weekly updates.';
-$btn1_text = get_post_meta($post_id, '_lsd_btn1_text', true) ?: 'Digest';
-$btn1_url = get_post_meta($post_id, '_lsd_btn1_url', true) ?: home_url('/digest/');
-$btn2_text = get_post_meta($post_id, '_lsd_btn2_text', true) ?: 'Read the Blog';
-$btn2_url = get_post_meta($post_id, '_lsd_btn2_url', true) ?: home_url('/newsletter/');
+$btn1_text = get_post_meta($post_id, '_lsd_btn1_text', true) ?: 'Learn Local SEO';
+$btn1_url = get_post_meta($post_id, '_lsd_btn1_url', true) ?: home_url('/resources/');
+$btn2_text = get_post_meta($post_id, '_lsd_btn2_text', true) ?: 'Digest';
+$btn2_url = get_post_meta($post_id, '_lsd_btn2_url', true) ?: home_url('/digest/');
 $nl_headline = get_post_meta($post_id, '_lsd_nl_headline', true) ?: 'Insights to your <span>Inbox</span></span>';
 $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading updates and deep Local SEO learning — Free.';
 ?>
