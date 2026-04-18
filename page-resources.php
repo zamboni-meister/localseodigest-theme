@@ -30,14 +30,14 @@ get_header(); ?>
                 <div class="resources-grid">
                     <?php
                     $lsd_guides = array(
-                        array('title' => 'What is Local SEO?', 'desc' => 'BrightLocal\'s beginner-friendly breakdown of local SEO — what it is, why it matters, and how it differs from traditional SEO.', 'link' => 'https://www.brightlocal.com/learn/what-is-local-seo/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
-                        array('title' => 'How to do Local SEO', 'desc' => 'A practical, step-by-step guide to optimizing your local search presence — from GBP setup to citations and beyond.', 'link' => 'https://www.brightlocal.com/learn/local-seo/local-search-optimization/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
-                        array('title' => 'How to Improve Local SEO Rankings', 'desc' => 'Backlinko\'s definitive guide to ranking higher in local search — covering every major ranking factor with actionable tactics.', 'link' => 'https://backlinko.com/local-seo-guide', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals'),
+                        array('title' => 'What is Local SEO?', 'desc' => 'BrightLocal\'s beginner-friendly breakdown of local SEO — what it is, why it matters, and how it differs from traditional SEO.', 'link' => 'https://www.brightlocal.com/learn/what-is-local-seo/', 'cat' => 'guide', 'cat_label' => 'Guide'),
+                        array('title' => 'How to do Local SEO', 'desc' => 'A practical, step-by-step guide to optimizing your local search presence — from GBP setup to citations and beyond.', 'link' => 'https://www.brightlocal.com/learn/local-seo/local-search-optimization/', 'cat' => 'guide', 'cat_label' => 'Guide'),
+                        array('title' => 'How to Improve Local SEO Rankings', 'desc' => 'Backlinko\'s definitive guide to ranking higher in local search — covering every major ranking factor with actionable tactics.', 'link' => 'https://backlinko.com/local-seo-guide', 'cat' => 'guide', 'cat_label' => 'Guide'),
                     );
                     foreach ($lsd_guides as $guide):
                         ?>
-                        <a href="<?php echo esc_url($guide['link']); ?>" class="resource-card resource-card--linked"
-                            target="_blank" rel="noopener">
+                        <a href="<?php echo esc_url($guide['link']); ?>" class="resource-card resource-card--linked" target="_blank"
+                            rel="noopener">
                             <span
                                 class="resource-card__cat resource-card__cat--<?php echo esc_attr($guide['cat']); ?>"><?php echo esc_html($guide['cat_label']); ?></span>
                             <h3 class="resource-card__title"><?php echo esc_html($guide['title']); ?></h3>
@@ -61,8 +61,8 @@ get_header(); ?>
                     );
                     foreach ($tools as $tool):
                         ?>
-                        <a href="<?php echo esc_url($tool['link']); ?>" class="resource-card resource-card--linked"
-                            target="_blank" rel="noopener">
+                        <a href="<?php echo esc_url($tool['link']); ?>" class="resource-card resource-card--linked" target="_blank"
+                            rel="noopener">
                             <span
                                 class="resource-card__cat resource-card__cat--<?php echo esc_attr($tool['cat']); ?>"><?php echo esc_html($tool['cat_label']); ?></span>
                             <h3 class="resource-card__title"><?php echo esc_html($tool['title']); ?></h3>
@@ -86,8 +86,8 @@ get_header(); ?>
                     );
                     foreach ($reading as $item):
                         ?>
-                        <a href="<?php echo esc_url($item['link']); ?>" class="resource-card resource-card--linked"
-                            target="_blank" rel="noopener">
+                        <a href="<?php echo esc_url($item['link']); ?>" class="resource-card resource-card--linked" target="_blank"
+                            rel="noopener">
                             <span
                                 class="resource-card__cat resource-card__cat--<?php echo esc_attr($item['cat']); ?>"><?php echo esc_html($item['cat_label']); ?></span>
                             <h3 class="resource-card__title"><?php echo esc_html($item['title']); ?></h3>
