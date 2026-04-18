@@ -65,6 +65,7 @@ get_header(); ?>
 
 <div class="archive-header">
     <div class="container">
+        <div class="archive-header__label">Contact</div>
         <h1 class="archive-header__title">Get in Touch</h1>
     </div>
 </div>

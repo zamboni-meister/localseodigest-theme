@@ -13,7 +13,7 @@
             <h1 class="archive-header__title">&ldquo;<?php the_search_query(); ?>&rdquo;</h1>
         <?php else : ?>
             <div class="archive-header__label">All Articles</div>
-            <h1 class="archive-header__title">The Blog</h1>
+            <h1 class="archive-header__title">Blog</h1>
         <?php endif; ?>
     </div>
 </div>

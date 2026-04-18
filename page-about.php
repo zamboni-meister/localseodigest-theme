@@ -50,7 +50,7 @@ $linkedin_label = get_post_meta( $id, 'lsd_ab_linkedin_label', true ) ?: 'Connec
 
     <section class="about-hero">
         <div class="about-hero__inner container">
-            <span class="about-hero__eyebrow"><?php echo esc_html( $hero_eyebrow ); ?></span>
+            <div class="archive-header__label"><?php echo esc_html( $hero_eyebrow ); ?></div>
             <h1 class="about-hero__headline"><?php echo esc_html( $hero_headline ); ?></h1>
             <p class="about-hero__sub"><?php echo esc_html( $hero_sub ); ?></p>
         </div>

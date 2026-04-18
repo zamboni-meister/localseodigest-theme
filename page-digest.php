@@ -44,6 +44,7 @@ get_header(); ?>
 
 <div class="resources-header">
     <div class="container">
+        <div class="archive-header__label">RSS Feed</div>
         <h1 class="resources-header__title">Digest</h1>
         <p class="resources-header__subtitle">Fresh posts from across the local SEO web — updated automatically.</p>
     </div>

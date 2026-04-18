@@ -6,6 +6,7 @@ get_header(); ?>
 
 <div class="resources-header">
     <div class="container">
+        <div class="archive-header__label">Learn</div>
         <h1 class="resources-header__title">Resources</h1>
         <p class="resources-header__subtitle">The best tools, guides, and references for local SEO — curated and updated regularly.</p>
     </div>
