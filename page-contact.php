@@ -147,8 +147,7 @@ get_header(); ?>
                                     <?php wp_nonce_field('lsd_contact', 'lsd_contact_nonce'); ?>
                                     <div style="margin-bottom: 20px;">
                                         <label
-                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Your
-                                            Name</label>
+                                            style="display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 7px;">Name</label>
                                         <input type="text" name="contact_name" placeholder="Jordan Doe"
                                             value="<?php echo esc_attr($_POST['contact_name'] ?? ''); ?>"
                                             style="width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.95rem; outline: none; background: var(--white);">
