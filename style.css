@@ -774,7 +774,7 @@ strong { font-weight: 600; color: var(--ink); }
 /* ============================================================
   RESOURCES PAGE
   ============================================================ */
-  
+
 .resources-header {
   background: var(--ink);
   padding: 56px 0 48px;
@@ -825,18 +825,19 @@ strong { font-weight: 600; color: var(--ink); }
 .resource-card__title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
 .resource-card__desc { font-size: 0.875rem; color: var(--mid-gray); line-height: 1.6; margin-bottom: 16px; }
 
-/* Resource card arrow — slides right on hover; border flips to brand yellow */
+/* Resource card arrow */
 .resource-card__arrow {
-  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
   font-size: 1.1rem;
   color: #111111;
   margin-top: auto;
   padding-top: 24px;
-  transition: transform 0.25s ease;
+  transition: justify-content 0s, color 0.25s ease;
 }
 
 .resource-card--linked:hover .resource-card__arrow {
-  transform: translateX(6px);
+  justify-content: flex-end;
 }
 
 /* ============================================================
