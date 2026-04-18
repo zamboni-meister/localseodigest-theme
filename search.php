@@ -10,7 +10,7 @@
 <div class="home-section">
     <div class="container">
         <?php if ( have_posts() ) : ?>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
             <?php while ( have_posts() ) : the_post(); ?>
             <a href="<?php the_permalink(); ?>" class="post-card lsd-article-card">
                 <?php if ( has_post_thumbnail() ) : ?>
