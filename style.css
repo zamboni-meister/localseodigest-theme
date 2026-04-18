@@ -859,6 +859,52 @@ strong { font-weight: 600; color: var(--ink); }
   line-height: 1.65;
 }
 
+.about-page { color: var(--color-ink, #111111); }
+
+    .about-hero { background: var(--color-ink, #111111); color: #ffffff; padding: 72px 0 80px; border-bottom: 3px solid var(--color-yellow, #FFF01F); }
+    .about-hero__inner { max-width: 760px; }
+    .about-hero__eyebrow { display: inline-block; background: var(--color-yellow, #FFF01F); color: var(--color-ink, #111111); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 24px; }
+    .about-hero__headline { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; margin: 0 0 20px; color: #ffffff; }
+    .about-hero__sub { font-size: 1.125rem; line-height: 1.7; color: rgba(255,255,255,0.75); max-width: 620px; margin: 0; }
+
+    .about-section { padding: 72px 0; }
+    .about-section--alt { background: var(--color-warm-white, #F7F7F5); }
+    .about-section__inner { max-width: 960px; margin: 0 auto; }
+    .about-section__inner--narrow { max-width: 680px; }
+    .about-section__title { font-size: 1.5rem; font-weight: 700; margin: 0 0 36px; padding-bottom: 16px; border-bottom: 2px solid var(--color-yellow, #FFF01F); display: inline-block; }
+    .about-section p { font-size: 1.0625rem; line-height: 1.75; margin: 0 0 18px; color: #333333; }
+    .about-section p:last-child { margin-bottom: 0; }
+    .about-section a { color: var(--color-ink, #111111); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .about-section a:hover { color: #555; }
+
+    .about-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .about-card { background: #ffffff; border: 1px solid #e8e8e5; border-top: 3px solid var(--color-yellow, #FFF01F); padding: 28px 24px; display: flex; flex-direction: column; }
+    .about-card__heading { font-size: 1rem; font-weight: 700; margin: 0 0 10px; color: var(--color-ink, #111111); }
+    .about-card__body { font-size: 0.9375rem; line-height: 1.65; color: #444444; margin: 0 0 16px; flex: 1; }
+    .about-card__link { font-size: 0.875rem; font-weight: 600; color: var(--color-ink, #111111) !important; text-decoration: none !important; letter-spacing: 0.01em; transition: opacity 0.15s; }
+    .about-card__link:hover { opacity: 0.6; }
+
+    .about-steps { display: flex; flex-direction: column; border-left: 2px solid var(--color-yellow, #FFF01F); margin-left: 20px; }
+    .about-step { display: flex; gap: 28px; align-items: flex-start; padding: 0 0 40px 36px; position: relative; }
+    .about-step:last-child { padding-bottom: 0; }
+    .about-step__num { position: absolute; left: -20px; top: 0; background: var(--color-yellow, #FFF01F); color: var(--color-ink, #111111); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .about-step__content { padding-top: 6px; }
+    .about-step__heading { font-size: 1rem; font-weight: 700; margin: 0 0 8px; color: var(--color-ink, #111111); }
+    .about-step__content p { margin: 0; }
+
+    .about-creator { border-top: 1px solid #e8e8e5; }
+    .about-linkedin { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 10px 20px; background: var(--color-ink, #111111); color: #ffffff !important; font-size: 0.9375rem; font-weight: 600; text-decoration: none !important; transition: opacity 0.15s; }
+    .about-linkedin:hover { opacity: 0.8; }
+    .about-linkedin__logo { display: flex; align-items: center; color: #ffffff; }
+
+    @media (max-width: 640px) {
+        .about-hero { padding: 48px 0 56px; }
+        .about-section { padding: 52px 0; }
+        .about-cards { grid-template-columns: 1fr; }
+        .about-steps { margin-left: 12px; }
+        .about-step { padding-left: 28px; }
+    }
+
 /* ============================================================
    CONTACT PAGE
    ============================================================ */
