@@ -149,9 +149,6 @@ $linkedin_label = get_post_meta($id, 'lsd_ab_linkedin_label', true) ?: 'Connect 
             <h2 class="about-section__title">The creator</h2>
             <p><?php echo esc_html($creator_para); ?></p>
             <div style="margin-top: 32px;">
-                <div
-                    style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 14px;">
-                    Also find me on</div>
                 <div style="display: flex; gap: 10px;">
                     <a href="https://www.linkedin.com/in/zane-creek/" target="_blank" rel="noopener noreferrer"
                         style="background: var(--warm-white); border: 1px solid var(--border); padding: 8px 16px; border-radius: var(--radius); font-size: 0.82rem; font-weight: 500; color: var(--charcoal); transition: border-color 0.18s ease; display:inline-flex; align-items:center; gap:7px; text-decoration:none;">
