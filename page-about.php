@@ -11,7 +11,7 @@ $id = get_the_ID();
 
 $hero_eyebrow  = get_post_meta( $id, 'lsd_ab_hero_eyebrow', true )  ?: 'About';
 $hero_headline = get_post_meta( $id, 'lsd_ab_hero_headline', true ) ?: 'Local SEO knowledge, organized and on demand.';
-$hero_sub      = get_post_meta( $id, 'lsd_ab_hero_sub', true )      ?: 'Local SEO Digest is a knowledge hub for local search — built to cut through the noise and give practitioners, agencies, and business owners something actually useful.';
+$hero_sub      = get_post_meta( $id, 'lsd_ab_hero_sub', true )      ?: 'Local SEO Digest is a knowledge hub for local search - built to cut through the noise and give practitioners, agencies, and business owners something actually useful.';
 
 $digest_heading = get_post_meta( $id, 'lsd_ab_digest_heading', true ) ?: 'The Digest';
 $digest_body    = get_post_meta( $id, 'lsd_ab_digest_body', true )    ?: 'A curated RSS feed pulling the latest from across the local SEO space. One place to stay current without chasing a dozen tabs.';
