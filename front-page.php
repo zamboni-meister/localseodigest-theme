@@ -15,7 +15,7 @@ $btn1_text      = get_post_meta( $post_id, '_lsd_btn1_text',      true ) ?: 'Dig
 $btn1_url       = get_post_meta( $post_id, '_lsd_btn1_url',       true ) ?: home_url( '/digest/' );
 $btn2_text      = get_post_meta( $post_id, '_lsd_btn2_text',      true ) ?: 'Read the Blog';
 $btn2_url       = get_post_meta( $post_id, '_lsd_btn2_url',       true ) ?: home_url( '/newsletter/' );
-$nl_headline    = get_post_meta( $post_id, '_lsd_nl_headline',    true ) ?: 'Get the <span>Local SEO Digest</span>';
+$nl_headline    = get_post_meta( $post_id, '_lsd_nl_headline',    true ) ?: 'Get the <span> Digest</span> in your <span>Inbox</span>';
 $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'GBP changelog, ranking signal breakdowns, and local search intel — every Friday. Free.';
 ?>
 
