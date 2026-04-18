@@ -20,9 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce']))
             $lsd_error = 'Please enter a valid email address.';
         } else {
             $to = 'info@localseodigest.com';
-            $subject = 'New contact message from ' . $name;
+            $subject = '[Local SEO Digest] Message from ' . $name;
             $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
-            $headers = ['Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $email];
+            $headers = [
+                'Content-Type: text/plain; charset=UTF-8',
+                'From: LocalSEO Digest <info@localseodigest.com>',
+                'Reply-To: ' . $name . ' <' . $email . '>',
+            ];
 
             if (wp_mail($to, $subject, $body, $headers)) {
                 $lsd_success = true;
