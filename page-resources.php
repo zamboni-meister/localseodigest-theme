@@ -81,7 +81,7 @@ get_header(); ?>
             foreach ( $reading as $item ) :
             ?>
             <a href="<?php echo esc_url( $item['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <span class="resource-card__cat">Reading</span>
+                <span class="resource-card__cat resource-card__cat--fundamentals">Fundamentals</span>
                 <h3 class="resource-card__title"><?php echo esc_html( $item['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $item['desc'] ); ?></p>
             </a>

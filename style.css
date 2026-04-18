@@ -30,6 +30,9 @@ Tags: blog, custom-colors, custom-logo, featured-images, post-formats, sticky-po
   --radius:        6px;
   --radius-lg:     12px;
   --transition:    0.18s ease;
+  --tag-fundamentals:      #C94A1E;
+  --tag-text-light:        #FFFFFF;
+  --tag-text-dark:         #111111;
 }
 
 /* ============================================================
@@ -834,6 +837,11 @@ strong { font-weight: 600; color: var(--ink); }
   margin-bottom: 14px;
   align-self: flex-start;
 }
+
+.resource-card__cat--fundamentals {
+  background: var(--tag-fundamentals);
+  color: #FFFFFF;
+
 
 .resource-card__title {
   font-size: 17px;
