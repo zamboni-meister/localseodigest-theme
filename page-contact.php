@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce']))
                     'updateEnabled' => true,
                 ]);
 
-                wp_remote_post('https://api.brevo.com/v3/contacts', [
+                $brevo_response = wp_remote_post('https://api.brevo.com/v3/contacts', [
                     'headers' => [
                         'api-key' => $brevo_api_key,
                         'Content-Type' => 'application/json',
@@ -50,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lsd_contact_nonce']))
                     'body' => $brevo_payload,
                     'timeout' => 10,
                 ]);
+
+                error_log('Brevo response: ' . print_r($brevo_response, true));
             } else {
                 $lsd_error = 'Something went wrong sending your message. Please email us directly.';
             }
