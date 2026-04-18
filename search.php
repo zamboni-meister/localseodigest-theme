@@ -8,17 +8,24 @@
 </div>
 
 <div class="home-section">
-    <div class="container--narrow">
+    <div class="container">
         <?php if ( have_posts() ) : ?>
-        <div style="display: flex; flex-direction: column; gap: 0;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
             <?php while ( have_posts() ) : the_post(); ?>
-            <article style="padding: 28px 0; border-bottom: 1px solid var(--border);">
-                <h2 style="font-size: 1.15rem; margin: 8px 0 10px;">
-                    <a href="<?php the_permalink(); ?>" style="color: var(--ink);"><?php the_title(); ?></a>
-                </h2>
-                <p style="font-size: 0.9rem; color: var(--mid-gray); line-height: 1.6; margin-bottom: 10px;"><?php the_excerpt(); ?></p>
-                <?php lsd_post_meta(); ?>
-            </article>
+            <a href="<?php the_permalink(); ?>" class="post-card lsd-article-card">
+                <?php if ( has_post_thumbnail() ) : ?>
+                <div class="post-card__image">
+                    <?php the_post_thumbnail( 'lsd-card' ); ?>
+                </div>
+                <?php endif; ?>
+                <div class="post-card__body">
+                    <h2 class="post-card__title" style="font-size: 1.05rem;">
+                        <?php the_title(); ?>
+                    </h2>
+                    <p class="post-card__excerpt"><?php the_excerpt(); ?></p>
+                    <?php lsd_post_meta(); ?>
+                </div>
+            </a>
             <?php endwhile; ?>
         </div>
         <div class="pagination"><?php echo paginate_links(); ?></div>
