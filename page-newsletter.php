@@ -26,7 +26,7 @@ get_header();
 
 		<!-- What you get -->
 		<div class="lsd-nl-page__value">
-			<p class="about-section__title">What's inside</p>
+			<p class="about-section__title">What's Inside</p>
 			<ul class="lsd-nl-page__value-list">
 				<li>Curated Local SEO news and insights</li>
 				<li>Tools, tips, and reading recommendations from the fundametals-upwards</li>
