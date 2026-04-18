@@ -43,7 +43,7 @@ get_header(); ?>
             <?php endforeach; ?>
         </div>
     </div>
-    
+
 
     <!-- Tools Section -->
     <div style="padding: 56px 0 0;">
@@ -54,12 +54,10 @@ get_header(); ?>
             <?php
             $tools = array(
                 array( 'icon' => '📍', 'title' => 'Google Business Profile', 'desc' => 'The foundation of local SEO. Claim, verify, and optimize your GBP listing.', 'link' => 'https://business.google.com', 'label' => 'Visit tool' ),
-                array( 'icon' => '🔍', 'title' => 'BrightLocal', 'desc' => 'Local SEO platform for rank tracking, citation building, and reputation management.', 'link' => 'https://brightlocal.com', 'label' => 'Visit tool' ),
                 array( 'icon' => '📊', 'title' => 'Google Search Console', 'desc' => 'Monitor your site\'s performance in Google Search and fix issues.', 'link' => 'https://search.google.com/search-console', 'label' => 'Visit tool' ),
-                array( 'icon' => '🗺️', 'title' => 'Whitespark', 'desc' => 'Citation finder, local rank tracker, and reputation builder for local businesses.', 'link' => 'https://whitespark.ca', 'label' => 'Visit tool' ),
-                array( 'icon' => '⚡', 'title' => 'PageSpeed Insights', 'desc' => 'Test your site\'s Core Web Vitals and get actionable performance recommendations.', 'link' => 'https://pagespeed.web.dev', 'label' => 'Visit tool' ),
-                array( 'icon' => '🔗', 'title' => 'Ahrefs Webmaster Tools', 'desc' => 'Free site audit, backlink analysis, and keyword research for your domain.', 'link' => 'https://ahrefs.com/webmaster-tools', 'label' => 'Visit tool' ),
+                array( 'icon' => '📈', 'title' => 'Google Analytics 4', 'desc' => 'Track website traffic, user behavior, and conversions from local search.', 'link' => 'https://analytics.google.com', 'label' => 'Visit tool' ),
             );
+            
             foreach ( $tools as $tool ) :
             ?>
             <a href="<?php echo esc_url( $tool['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
