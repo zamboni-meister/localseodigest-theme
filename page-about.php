@@ -58,7 +58,7 @@ $linkedin_label = get_post_meta($id, 'lsd_ab_linkedin_label', true) ?: 'Connect 
 
     <section class="about-section about-section--alt">
         <div class="container about-section__inner">
-            <h2 class="about-section__title">What's inside</h2>
+            <h2 class="about-section__title">What's Here</h2>
             <div class="about-cards">
 
                 <div class="about-card">
