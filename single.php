@@ -4,7 +4,6 @@
 
 <div class="post-header">
     <div class="container--narrow">
-        <?php lsd_post_category_badge(); ?>
         <h1 class="post-header__title"><?php the_title(); ?></h1>
         <div class="post-header__meta">
             <strong><?php the_author(); ?></strong>

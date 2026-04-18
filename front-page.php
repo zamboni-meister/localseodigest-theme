@@ -62,12 +62,9 @@ $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading upda
 		if ($latest->have_posts()):
 			while ($latest->have_posts()):
 				$latest->the_post();
-				$categories = get_the_category();
-				$cat_name = !empty($categories) ? $categories[0]->name : 'Article';
 				$reading_time = lsd_reading_time(get_the_ID());
 				?>
 				<a href="<?php the_permalink(); ?>" class="lsd-article-card">
-					<span class="lsd-article-card__cat"><?php echo esc_html($cat_name); ?></span>
 					<h3 class="lsd-article-card__title"><?php the_title(); ?></h3>
 					<p class="lsd-article-card__excerpt">
 						<?php echo wp_trim_words(get_the_excerpt(), 22, '…'); ?>
