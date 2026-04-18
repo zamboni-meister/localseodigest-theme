@@ -27,18 +27,17 @@ get_header(); ?>
         <div class="resources-grid">
             <?php
             $lsd_guides = array(
-                array( 'icon' => '📍', 'title' => 'GBP Optimization Guide', 'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url( '/blog/' ) ),
-                array( 'icon' => '🗂️', 'title' => 'Local Citation Guide', 'desc' => 'How to build consistent citations across directories to strengthen your local rankings.', 'link' => home_url( '/blog/' ) ),
-                array( 'icon' => '⭐', 'title' => 'Review Generation Guide', 'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.', 'link' => home_url( '/blog/' ) ),
-                array( 'icon' => '🗺️', 'title' => 'Local Pack Ranking Guide', 'desc' => 'What actually drives local pack rankings — and how to improve your position.', 'link' => home_url( '/blog/' ) ),
+                array( 'title' => 'GBP Optimization Guide', 'desc' => 'A step-by-step guide to claiming, verifying, and fully optimizing your Google Business Profile.', 'link' => home_url( '/blog/' ) ),
+                array( 'title' => 'Local Citation Guide', 'desc' => 'How to build consistent citations across directories to strengthen your local rankings.', 'link' => home_url( '/blog/' ) ),
+                array( 'title' => 'Review Generation Guide', 'desc' => 'Proven strategies for earning more Google reviews and managing your online reputation.', 'link' => home_url( '/blog/' ) ),
+                array( 'title' => 'Local Pack Ranking Guide', 'desc' => 'What actually drives local pack rankings — and how to improve your position.', 'link' => home_url( '/blog/' ) ),
             );
             foreach ( $lsd_guides as $guide ) :
             ?>
             <a href="<?php echo esc_url( $guide['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <div class="resource-card__icon"><?php echo $guide['icon']; ?></div>
+                <span class="resource-card__cat">Guide</span>
                 <h3 class="resource-card__title"><?php echo esc_html( $guide['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $guide['desc'] ); ?></p>
-                <span class="resource-card__arrow">&rarr;</span>
             </a>
             <?php endforeach; ?>
         </div>
@@ -52,17 +51,19 @@ get_header(); ?>
         <div class="resources-grid">
             <?php
             $tools = array(
-                array( 'icon' => '📍', 'title' => 'Google Business Profile', 'desc' => 'The foundation of local SEO. Claim, verify, and optimize your GBP listing.', 'link' => 'https://business.google.com' ),
-                array( 'icon' => '📊', 'title' => 'Google Search Console', 'desc' => 'Monitor your site\'s performance in Google Search and fix issues.', 'link' => 'https://search.google.com/search-console' ),
-                array( 'icon' => '📈', 'title' => 'Google Analytics 4', 'desc' => 'Track website traffic, user behavior, and conversions from local search.', 'link' => 'https://analytics.google.com' ),
+                array( 'title' => 'Google Business Profile', 'desc' => 'The foundation of local SEO. Claim, verify, and optimize your GBP listing.', 'link' => 'https://business.google.com' ),
+                array( 'title' => 'BrightLocal', 'desc' => 'Local SEO platform for rank tracking, citation building, and reputation management.', 'link' => 'https://brightlocal.com' ),
+                array( 'title' => 'Google Search Console', 'desc' => 'Monitor your site\'s performance in Google Search and fix issues.', 'link' => 'https://search.google.com/search-console' ),
+                array( 'title' => 'Whitespark', 'desc' => 'Citation finder, local rank tracker, and reputation builder for local businesses.', 'link' => 'https://whitespark.ca' ),
+                array( 'title' => 'PageSpeed Insights', 'desc' => 'Test your site\'s Core Web Vitals and get actionable performance recommendations.', 'link' => 'https://pagespeed.web.dev' ),
+                array( 'title' => 'Ahrefs Webmaster Tools', 'desc' => 'Free site audit, backlink analysis, and keyword research for your domain.', 'link' => 'https://ahrefs.com/webmaster-tools' ),
             );
             foreach ( $tools as $tool ) :
             ?>
             <a href="<?php echo esc_url( $tool['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <div class="resource-card__icon"><?php echo $tool['icon']; ?></div>
+                <span class="resource-card__cat">Tool</span>
                 <h3 class="resource-card__title"><?php echo esc_html( $tool['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $tool['desc'] ); ?></p>
-                <span class="resource-card__arrow">&rarr;</span>
             </a>
             <?php endforeach; ?>
         </div>
@@ -76,17 +77,16 @@ get_header(); ?>
         <div class="resources-grid">
             <?php
             $reading = array(
-                array( 'icon' => '🔍', 'title' => 'How Google Organizes Information', 'desc' => 'How Google\'s crawlers discover, render, and index content across hundreds of billions of pages before any ranking occurs.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/organizing-information/' ),
-                array( 'icon' => '📊', 'title' => 'How Google Ranks Results', 'desc' => 'Google\'s breakdown of the five core ranking signals: query meaning, content relevance, quality, usability, and context.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/ranking-results/' ),
-                array( 'icon' => '📍', 'title' => 'How Google Ranks Local Results', 'desc' => 'Google\'s official explanation of the three local ranking factors: relevance, distance, and prominence.', 'link' => 'https://support.google.com/business/answer/7091' ),
+                array( 'title' => 'Google\'s Local SEO Guide', 'desc' => 'Official documentation on how to improve your local ranking on Google — straight from the source.', 'link' => 'https://support.google.com/business/answer/7091' ),
+                array( 'title' => 'Moz Local Search Ranking Factors', 'desc' => 'Annual survey of the most important local ranking signals according to top SEOs.', 'link' => 'https://moz.com/local-search-ranking-factors' ),
+                array( 'title' => 'Local SEO Digest Blog', 'desc' => 'My own articles, experiments, and findings — updated regularly.', 'link' => home_url( '/blog/' ) ),
             );
             foreach ( $reading as $item ) :
             ?>
             <a href="<?php echo esc_url( $item['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <div class="resource-card__icon"><?php echo $item['icon']; ?></div>
+                <span class="resource-card__cat">Reading</span>
                 <h3 class="resource-card__title"><?php echo esc_html( $item['title'] ); ?></h3>
                 <p class="resource-card__desc"><?php echo esc_html( $item['desc'] ); ?></p>
-                <span class="resource-card__arrow">&rarr;</span>
             </a>
             <?php endforeach; ?>
         </div>
