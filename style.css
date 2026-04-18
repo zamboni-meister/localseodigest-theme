@@ -769,10 +769,12 @@ strong { font-weight: 600; color: var(--ink); }
   align-items: center;
   justify-content: center;
   font-size: 4rem;
+}
 
-  /* ============================================================
-   RESOURCES PAGE
-   ============================================================ */
+/* ============================================================
+  RESOURCES PAGE
+  ============================================================ */
+  
 .resources-header {
   background: var(--ink);
   padding: 56px 0 48px;
