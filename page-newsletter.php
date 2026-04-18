@@ -45,7 +45,7 @@ get_header();
 						type="email"
 						name="EMAIL"
 						class="lsd-nl-page__input"
-						placeholder="you@example.com"
+						placeholder="example@email.com"
 						required
 						aria-label="Email address"
 					/>

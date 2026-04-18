@@ -97,7 +97,7 @@ $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading upda
 		</div>
 		<form class="lsd-nl-strip__form" method="POST"
 			action="https://1c0cb842.sibforms.com/serve/MUIFACfB43trusSs2v3WjJyc3X8hMfxr031W92rOqPBY-RgYtAkikvYykYSkl2vxmAMxGF_uyJGnvJTbl3e3zThuAopZeArAR8Mv-agnDrZhKKfe7ZMKGO_OXG0V16MfdJaa6TR4tMtg9ClJrqtITc9dI87d55Doe2BEi1OBTDcmw0MezVbF0BTvojWOvu79yhSWyVrtYgy5eghj">
-			<input type="email" name="EMAIL" class="lsd-nl-strip__input" placeholder="your@email.com" required
+			<input type="email" name="EMAIL" class="lsd-nl-strip__input" placeholder="example@email.com" required
 				aria-label="Email address" />
 			<button type="submit" class="lsd-btn lsd-btn--yellow">Subscribe</button>
 			<input type="text" name="email_address_check" value="" style="display:none;">
