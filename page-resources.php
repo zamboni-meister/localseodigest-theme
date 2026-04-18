@@ -74,17 +74,17 @@ get_header(); ?>
         <div class="resources-grid">
             <?php
             $reading = array(
-                array( 'title' => 'How Google Organizes Information', 'desc' => 'How Google Organizes Information', 'desc' => 'How Google\'s crawlers discover, render, and index content across hundreds of billions of pages before any ranking occurs.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/organizing-information/' ),
-                array( 'title' => 'How Google Ranks Results', 'desc' => 'Google\'s breakdown of the five core ranking signals: query meaning, content relevance, quality, usability, and context.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/ranking-results/' ),
-                array( 'title' => 'How Google Ranks Local Results', 'desc' => 'Google\'s official explanation of the three local ranking factors: relevance, distance, and prominence.', 'link' => 'https://support.google.com/business/answer/7091' ),
-            );
-            foreach ( $reading as $item ) :
-            ?>
-            <a href="<?php echo esc_url( $item['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
-                <span class="resource-card__cat resource-card__cat--fundamentals">Fundamentals</span>
-                <h3 class="resource-card__title"><?php echo esc_html( $item['title'] ); ?></h3>
-                <p class="resource-card__desc"><?php echo esc_html( $item['desc'] ); ?></p>
-            </a>
+                array( 'title' => 'How Google Organizes Information', 'desc' => 'How Google\'s crawlers discover, render, and index content across hundreds of billions of pages before any ranking occurs.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/organizing-information/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals' ),
+                array( 'title' => 'How Google Ranks Results', 'desc' => 'Google\'s breakdown of the five core ranking signals: query meaning, content relevance, quality, usability, and context.', 'link' => 'https://www.google.com/intl/en_us/search/howsearchworks/how-search-works/ranking-results/', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals' ),
+                array( 'title' => 'How Google Ranks Local Results', 'desc' => 'Google\'s official explanation of the three local ranking factors: relevance, distance, and prominence.', 'link' => 'https://support.google.com/business/answer/7091', 'cat' => 'fundamentals', 'cat_label' => 'Fundamentals' ),
+                );
+                foreach ( $reading as $item ) :
+                ?>
+                <a href="<?php echo esc_url( $item['link'] ); ?>" class="resource-card resource-card--linked" target="_blank" rel="noopener">
+                    <span class="resource-card__cat resource-card__cat--<?php echo esc_attr( $item['cat'] ); ?>"><?php echo esc_html( $item['cat_label'] ); ?></span>
+                    <h3 class="resource-card__title"><?php echo esc_html( $item['title'] ); ?></h3>
+                    <p class="resource-card__desc"><?php echo esc_html( $item['desc'] ); ?></p>
+                </a>
             <?php endforeach; ?>
         </div>
     </div>
