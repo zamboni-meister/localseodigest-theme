@@ -116,7 +116,7 @@ $nl_sub         = get_post_meta( $post_id, '_lsd_nl_sub',         true ) ?: 'Ind
 <section class="lsd-section lsd-section--gray">
 	<div class="lsd-section__header">
 		<h2 class="lsd-section__title">Resources</h2>
-		<a href="<?php echo esc_url( home_url( '/resources/' ) ); ?>" class="lsd-section__link">View all resources →</a>
+		<a href="<?php echo esc_url( home_url( '/resources/' ) ); ?>" class="lsd-section__link">View all →</a>
 	</div>
 
 	<div class="lsd-resources-grid">

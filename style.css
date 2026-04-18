@@ -1386,7 +1386,7 @@ strong { font-weight: 600; color: var(--ink); }
 	color: inherit;
 	text-decoration: none;
 }
-.lsd-resource-card__title a:hover { text-decoration: underline; }
+#.lsd-resource-card__title a:hover { text-decoration: none; }
 
 .lsd-resource-card__desc {
 	font-size: 13px;
