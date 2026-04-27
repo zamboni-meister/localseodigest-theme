@@ -62,7 +62,6 @@ $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading upda
 		if ($latest->have_posts()):
 			while ($latest->have_posts()):
 				$latest->the_post();
-				$reading_time = lsd_reading_time(get_the_ID());
 				?>
 				<a href="<?php the_permalink(); ?>" class="lsd-article-card">
 					<h3 class="lsd-article-card__title"><?php the_title(); ?></h3>
@@ -72,7 +71,6 @@ $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading upda
 					<div class="lsd-article-card__meta">
 						<span><?php echo get_the_date('M j, Y'); ?></span>
 						<span class="lsd-article-card__dot" aria-hidden="true"></span>
-						<span><?php echo esc_html($reading_time); ?> min read</span>
 					</div>
 				</a>
 				<?php
