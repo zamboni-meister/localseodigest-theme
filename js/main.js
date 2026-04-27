@@ -45,4 +45,49 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Table of Contents — auto-generate from h2s + active tracking
+    var tocNav    = document.getElementById('toc-nav');
+    var tocWidget = document.getElementById('toc-widget');
+
+    if (tocNav && tocWidget) {
+        var headings = document.querySelectorAll('.entry-content h2');
+
+        // Hide TOC if fewer than 2 headings
+        if (headings.length < 2) {
+            tocWidget.style.display = 'none';
+        } else {
+            // Build links, ensure each heading has an id
+            headings.forEach(function (h, i) {
+                if (!h.id) {
+                    h.id = 'section-' + i + '-' + h.textContent.trim()
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/(^-|-$)/g, '');
+                }
+                var link = document.createElement('a');
+                link.href      = '#' + h.id;
+                link.className = 'toc-link';
+                link.textContent = h.textContent.replace(/^#+\s*/, '');
+                tocNav.appendChild(link);
+            });
+
+            // Active link tracking via IntersectionObserver
+            var links = tocNav.querySelectorAll('.toc-link');
+
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            links.forEach(function (l) { l.classList.remove('is-active'); });
+                            var active = tocNav.querySelector('a[href="#' + entry.target.id + '"]');
+                            if (active) active.classList.add('is-active');
+                        }
+                    });
+                }, { rootMargin: '-10% 0px -80% 0px' });
+
+                headings.forEach(function (h) { observer.observe(h); });
+            }
+        }
+    }
+
 });
