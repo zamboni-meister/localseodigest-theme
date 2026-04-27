@@ -50,20 +50,6 @@
                 </div>
                 <?php endif; ?>
 
-                <!-- Author box -->
-                <div class="author-box">
-                    <div class="author-box__avatar">
-                        <?php echo get_avatar( get_the_author_meta( 'ID' ), 64 ); ?>
-                    </div>
-                    <div class="author-box__info">
-                        <div class="author-box__name"><?php the_author(); ?></div>
-                        <div class="author-box__bio"><?php the_author_meta( 'description' ); ?></div>
-                        <div class="author-box__site">
-                            Building a self-managed website documenting the local SEO journey to help business owners and marketers grow their local visibility.
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Post navigation -->
                 <div class="post-nav">
                     <?php
