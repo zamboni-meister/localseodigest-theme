@@ -154,7 +154,6 @@ function lsd_post_meta( $post_id = null ) {
         <time datetime="<?php echo get_the_date( 'c', $post_id ); ?>">
             <?php echo get_the_date( 'M j, Y', $post_id ); ?>
         </time>
-        <span class="read-time"><?php echo lsd_reading_time( $post_id ); ?></span>
     </div>
     <?php
 }
