@@ -20,7 +20,6 @@
             <strong><?php the_author(); ?></strong>
             <span class="sep">/</span>
             <span><?php echo get_the_date(); ?></span>
-            <span class="sep">/</span>
         </div>
     </div>
 </div>
