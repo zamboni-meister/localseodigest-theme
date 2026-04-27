@@ -38,7 +38,6 @@
                                         <?php the_title(); ?>
                                     </h2>
                                     <p class="post-card__excerpt"><?php the_excerpt(); ?></p>
-                                    <?php lsd_post_meta(); ?>
                                 </div>
                             </a>
                         <?php endwhile; ?>
