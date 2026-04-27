@@ -70,7 +70,6 @@ $nl_sub = get_post_meta($post_id, '_lsd_nl_sub', true) ?: 'Industry-leading upda
 					</p>
 					<div class="lsd-article-card__meta">
 						<span><?php echo get_the_date('M j, Y'); ?></span>
-						<span class="lsd-article-card__dot" aria-hidden="true"></span>
 					</div>
 				</a>
 				<?php
