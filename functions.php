@@ -102,15 +102,12 @@ add_filter( 'excerpt_more', 'lsd_excerpt_more' );
 /* ============================================================
    READING TIME
    ============================================================ */
-function lsd_post_meta( $post_id = null ) {
-    $post_id = $post_id ?: get_the_ID();
-    ?>
-    <div class="post-card__meta">
-        <time datetime="<?php echo get_the_date( 'c', $post_id ); ?>">
-            <?php echo get_the_date( 'M j, Y', $post_id ); ?>
-        </time>
-    </div>
-    <?php
+function lsd_reading_time( $post_id = null ) {
+    $post    = get_post( $post_id );
+    $content = strip_tags( $post->post_content );
+    $words   = str_word_count( $content );
+    $minutes = max( 1, round( $words / 200 ) );
+    return $minutes . ' min read';
 }
 
 /* ============================================================
