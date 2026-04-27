@@ -5,15 +5,6 @@
 <!-- Post header — full width dark band -->
 <div class="post-header">
     <div class="container">
-        <?php
-        $categories = get_the_category();
-        if ( $categories ) :
-        ?>
-        <a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ); ?>" class="post-header__category">
-            <?php echo esc_html( $categories[0]->name ); ?>
-        </a>
-        <?php endif; ?>
-
         <h1 class="post-header__title"><?php the_title(); ?></h1>
 
         <div class="post-header__meta">
