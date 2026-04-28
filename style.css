@@ -345,7 +345,6 @@ strong { font-weight: 600; color: var(--ink); }
 }
 
 .section-header a:hover { color: var(--ink); }
-
 /* ============================================================
    POST CARDS
    ============================================================ */
@@ -361,17 +360,29 @@ strong { font-weight: 600; color: var(--ink); }
   gap: 28px;
 }
 
+.posts-grid--blog {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .post-card {
   background: var(--white);
-  border: 1px solid var(--border);
+  border: 0.5px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow var(--transition);
 }
 
 .post-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+}
+
+.post-card__accent {
+  height: 3px;
+  background: var(--yellow);
+  flex-shrink: 0;
 }
 
 .post-card__image {
@@ -389,21 +400,7 @@ strong { font-weight: 600; color: var(--ink); }
 
 .post-card:hover .post-card__image img { transform: scale(1.04); }
 
-.post-card__body { padding: 22px 24px 24px; }
-
-.post-card__category {
-  display: inline-block;
-  background: var(--yellow-tint);
-  color: var(--yellow-dark);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  border: 1px solid rgba(255,240,31,0.4);
-}
+.post-card__body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
 
 .post-card__title {
   font-size: 1.05rem;
@@ -414,13 +411,12 @@ strong { font-weight: 600; color: var(--ink); }
   transition: color var(--transition);
 }
 
-.post-card:hover .post-card__title { color: var(--ink); }
-
 .post-card__excerpt {
   font-size: 0.875rem;
   color: var(--mid-gray);
   line-height: 1.6;
   margin-bottom: 16px;
+  flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -430,14 +426,13 @@ strong { font-weight: 600; color: var(--ink); }
 .post-card__meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
   font-size: 0.78rem;
   color: var(--light-gray);
+  margin-top: auto;
 }
 
 .post-card__meta time { font-weight: 500; }
-
-.post-card__meta .read-time::before { content: '·'; margin-right: 12px; }
 
 /* Featured card variant */
 .post-card--featured .post-card__image { aspect-ratio: 16/10; }
