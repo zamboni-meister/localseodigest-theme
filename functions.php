@@ -380,6 +380,17 @@ add_action( 'save_post', 'lsd_save_about_page_meta' );
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
+
+/* ============================================================
+   DEFER JQUERY (PERFORMANCE)
+   ============================================================ */
+add_filter( 'script_loader_tag', function( $tag, $handle, $src ) {
+    if ( $handle === 'jquery-core' ) {
+        return str_replace( ' src=', ' defer src=', $tag );
+    }
+    return $tag;
+}, 10, 3 );
+
 /* ============================================================
    GLOSSARY CUSTOM POST TYPE
    ============================================================ */
