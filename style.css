@@ -942,6 +942,10 @@ strong { font-weight: 600; color: var(--ink); }
 
 .archive-header__title { color: var(--white); font-size: clamp(1.6rem, 3vw, 2.4rem); }
 
+.posts-grid--blog {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* ============================================================
    ABOUT PAGE
    ============================================================ */

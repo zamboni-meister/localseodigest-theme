@@ -24,7 +24,7 @@
 
             <main role="main">
                 <?php if (have_posts()): ?>
-                    <div class="posts-grid">
+                    <div class="posts-grid posts-grid--blog">
                         <?php while (have_posts()):
                             the_post(); ?>
                             <a href="<?php the_permalink(); ?>" class="post-card lsd-article-card">
