@@ -1271,10 +1271,11 @@ strong { font-weight: 600; color: var(--ink); }
 @media (max-width: 1024px) {
   .posts-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .content-sidebar { grid-template-columns: 1fr; }
+  .content-sidebar { grid-template-columns: 1fr; gap: 0; }
   .about-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .resources-grid { grid-template-columns: repeat(2, 1fr); }
+  .content-sidebar aside { display: none; }
 }
 
 @media (max-width: 768px) {
