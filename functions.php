@@ -432,3 +432,34 @@ function lsd_register_glossary_post_type() {
     register_post_type( 'glossary_term', $args );
 }
 add_action( 'init', 'lsd_register_glossary_post_type' );
+
+// Digest feed push endpoint
+add_action('rest_api_init', function () {
+    register_rest_route('lsd/v1', '/feed-update', [
+        'methods'             => 'POST',
+        'callback'            => 'lsd_receive_feed',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
+function lsd_receive_feed(WP_REST_Request $request) {
+    $secret = $request->get_header('X-LSD-Secret');
+    if ($secret !== LSD_FEED_SECRET) {
+        return new WP_REST_Response(['error' => 'Unauthorized'], 401);
+    }
+
+    $body  = $request->get_json_params();
+    $items = $body['items'] ?? $body ?? [];
+
+    if (!is_array($items) || empty($items)) {
+        return new WP_REST_Response(['error' => 'No items'], 400);
+    }
+
+    usort($items, function($a, $b) {
+        return strtotime($b['date'] ?? '') - strtotime($a['date'] ?? '');
+    });
+
+    update_option('lsd_digest_feed', $items, false);
+
+    return new WP_REST_Response(['success' => true, 'count' => count($items)], 200);
+}

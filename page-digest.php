@@ -3,43 +3,12 @@
  * Template Name: Digest Page
  */
 
-
-// Fetch and cache feed data
-$items = get_transient('digest_feed');
-
-if ($items === false) {
-    $response = wp_remote_get('https://doytr55.app.n8n.cloud/webhook/feed-data', [
-        'timeout' => 15,
-    ]);
-
-    if (!is_wp_error($response)) {
-        $body   = wp_remote_retrieve_body($response);
-        $parsed = json_decode($body, true);
-
-        // Handle both flat array and wrapped {"items": [...]}
-        if (isset($parsed['items']) && is_array($parsed['items'])) {
-            $items = $parsed['items'];
-        } elseif (isset($parsed[0]) && is_array($parsed[0])) {
-            $items = $parsed;
-        } elseif (is_array($parsed)) {
-            $items = array_values($parsed);
-        } else {
-            $items = [];
-        }
-
-        if (!empty($items)) {
-            usort($items, function($a, $b) {
-                return strtotime($b['date'] ?? '') - strtotime($a['date'] ?? '');
-            });
-            set_transient('digest_feed', $items, HOUR_IN_SECONDS);
-        }
-    }
-}
-
+$items = get_option('lsd_digest_feed', []);
 if (!is_array($items)) {
     $items = [];
 }
 
+get_header(); ?>
 get_header(); ?>
 
 <div class="resources-header">
