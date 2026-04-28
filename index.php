@@ -32,6 +32,8 @@
                                     <div class="post-card__image">
                                         <?php the_post_thumbnail('lsd-card'); ?>
                                     </div>
+                                <?php else: ?>
+                                    <div class="post-card__accent"></div>
                                 <?php endif; ?>
                                 <div class="post-card__body">
                                     <h2 class="post-card__title" style="font-size: 1.05rem;">

@@ -21,14 +21,15 @@ get_header(); ?>
 <div class="container">
     <div style="padding: 56px 0;">
 
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-            <div id="feed-status" style="font-size: 0.82rem; color: var(--mid-gray);">
+        <!-- Controls bar -->
+        <div class="digest-controls">
+            <div id="feed-status" class="digest-controls__status">
                 <?php echo count($items); ?> article<?php echo count($items) !== 1 ? 's' : ''; ?> loaded
             </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--mid-gray);">
+            <div class="digest-controls__right">
+                <div class="digest-per-page">
                     Show
-                    <select id="per-page-top" style="padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.82rem; color: var(--ink); background: var(--warm-white); outline: none;">
+                    <select id="per-page-top" class="digest-select">
                         <option value="25" selected>25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
@@ -39,7 +40,7 @@ get_header(); ?>
                     id="feed-search"
                     type="search"
                     placeholder="Search articles&hellip;"
-                    style="padding: 8px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; color: var(--ink); background: var(--warm-white); outline: none; width: 220px;"
+                    class="digest-search"
                 >
             </div>
         </div>
@@ -63,18 +64,19 @@ get_header(); ?>
             <div class="feed-row"
                  data-title="<?php echo strtolower($title); ?>"
                  data-source="<?php echo strtolower($source); ?>"
-                 style="display: grid; grid-template-columns: auto 1fr 200px; align-items: center; padding: 14px 20px; background: <?php echo $bg; ?>; border-top: 1px solid var(--border); transition: background 0.15s ease;"
-                 onmouseover="this.style.background='var(--yellow-tint)'" onmouseout="this.style.background='<?php echo $bg; ?>'">
-                <span class="source-badge" data-source="<?php echo strtolower($source); ?>"
-                      style="font-size: 0.78rem; font-weight: 700; border-radius: 20px; padding: 3px 10px; display: inline-block; white-space: nowrap;">
-                    <?php echo $source; ?>
-                </span>
-                <a href="<?php echo $link; ?>" target="_blank" rel="noopener"
-                   style="font-size: 0.88rem; color: var(--ink); text-decoration: none; font-weight: 500; line-height: 1.4; padding: 0 16px;"
+                 data-bg="<?php echo $bg; ?>"
+                 style="background: <?php echo $bg; ?>;"
+                 onmouseover="this.style.background='var(--yellow-tint)'" onmouseout="this.style.background=this.dataset.bg">
+                <div class="feed-row__badge-col">
+                    <span class="source-badge" data-source="<?php echo strtolower($source); ?>">
+                        <?php echo $source; ?>
+                    </span>
+                </div>
+                <a href="<?php echo $link; ?>" target="_blank" rel="noopener" class="feed-row__title"
                    onmouseover="this.style.color='var(--yellow-dark)'" onmouseout="this.style.color='var(--ink)'">
                     <?php echo $title; ?>
                 </a>
-                <span style="font-size: 0.78rem; color: var(--mid-gray); text-align: right; white-space: nowrap;">
+                <span class="feed-row__date">
                     <?php echo $formatted_date ?: $date; ?>
                 </span>
             </div>
@@ -85,13 +87,13 @@ get_header(); ?>
             No articles match your search.
         </div>
 
-        <div id="pagination-bottom" style="display: flex; align-items: center; justify-content: space-between; margin-top: 20px; flex-wrap: wrap; gap: 12px;">
+        <div id="pagination-bottom" class="digest-pagination">
             <div id="page-info-bottom" style="font-size: 0.82rem; color: var(--mid-gray);"></div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <div id="page-buttons-bottom" style="display: flex; gap: 6px;"></div>
-                <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--mid-gray);">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <div id="page-buttons-bottom" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+                <div class="digest-per-page">
                     Show
-                    <select id="per-page-bottom" style="padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.82rem; color: var(--ink); background: var(--warm-white); outline: none;">
+                    <select id="per-page-bottom" class="digest-select">
                         <option value="25" selected>25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
@@ -105,17 +107,162 @@ get_header(); ?>
 </div>
 
 <style>
+/* ── Source badges ─────────────────────────────────────── */
 .source-badge[data-source="google search central"] { background: #4285F4; color: #fff; border: 1px solid #000; }
 .source-badge[data-source="semrush"]               { background: #E0C7FF; color: #181E15; border: 1px solid #000; }
 .source-badge[data-source="nathan gotch"]           { background: #2952CC; color: #fff; border: 1px solid #000; }
 .source-badge[data-source="search engine journal"]  { background: #5DC82A; color: #fff; border: 1px solid #000; }
 .source-badge                                       { background: var(--yellow-tint); color: var(--yellow-dark); border: 1px solid #000; }
+
+.source-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 3px 10px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* ── Controls bar ──────────────────────────────────────── */
+.digest-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.digest-controls__status {
+    font-size: 0.82rem;
+    color: var(--mid-gray);
+    white-space: nowrap;
+}
+
+.digest-controls__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.digest-per-page {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--mid-gray);
+    white-space: nowrap;
+}
+
+.digest-select {
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.82rem;
+    color: var(--ink);
+    background: var(--warm-white);
+    outline: none;
+}
+
+.digest-search {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--warm-white);
+    outline: none;
+    width: 220px;
+}
+
+/* ── Feed rows ─────────────────────────────────────────── */
+.feed-row {
+    display: grid;
+    grid-template-columns: auto 1fr 200px;
+    align-items: center;
+    padding: 14px 20px;
+    border-top: 1px solid var(--border);
+    transition: background 0.15s ease;
+    gap: 0;
+}
+
+.feed-row__badge-col {
+    padding-right: 16px;
+}
+
+.feed-row__title {
+    font-size: 0.88rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 0 16px 0 0;
+}
+
+.feed-row__date {
+    font-size: 0.78rem;
+    color: var(--mid-gray);
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* ── Pagination bar ────────────────────────────────────── */
+.digest-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ── Mobile ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+
+    /* Stack controls vertically */
+    .digest-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .digest-controls__right {
+        width: 100%;
+    }
+
+    .digest-search {
+        width: 100%;
+        flex: 1;
+    }
+
+    /* Stack each row: badge top, title middle, date bottom */
+    .feed-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 12px 16px;
+    }
+
+    .feed-row__badge-col {
+        padding-right: 0;
+    }
+
+    .feed-row__title {
+        padding: 0;
+        font-size: 0.875rem;
+    }
+
+    .feed-row__date {
+        text-align: left;
+        font-size: 0.75rem;
+    }
+}
 </style>
 
 <script>
 (function () {
     const allRows     = Array.from(document.querySelectorAll('.feed-row'));
-    const rowsEl      = document.getElementById('feed-rows');
     const statusEl    = document.getElementById('feed-status');
     const searchEl    = document.getElementById('feed-search');
     const emptyEl     = document.getElementById('feed-empty');
@@ -146,7 +293,7 @@ get_header(); ?>
         const start = (currentPage - 1) * perPage;
         const end   = Math.min(start + perPage, filteredRows.length);
 
-        filteredRows.slice(start, end).forEach(r => r.style.display = 'grid');
+        filteredRows.slice(start, end).forEach(r => r.style.display = '');
 
         pageInfoBot.textContent = `Showing ${start + 1}–${end} of ${filteredRows.length} articles`;
         buildPageButtons(pageBtnsBot, totalPages);
