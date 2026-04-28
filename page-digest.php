@@ -9,7 +9,6 @@ if (!is_array($items)) {
 }
 
 get_header(); ?>
-get_header(); ?>
 
 <div class="resources-header">
     <div class="container">
